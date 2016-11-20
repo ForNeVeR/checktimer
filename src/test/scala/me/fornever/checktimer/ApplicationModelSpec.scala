@@ -51,7 +51,7 @@ class ApplicationModelSpec extends FlatSpec with Matchers {
   it should "contain formatted project info after start" in {
     val model = new ApplicationModel
     model.start("proj01", "activ02")
-    model.currentProjectInfo.value should be ("proj01: activ02")
+    model.currentProjectInfo.value should be ("proj01 / activ02")
   }
 
   it should "contain formatted time string value" in {
