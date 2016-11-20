@@ -6,10 +6,9 @@ import scalafx.Includes._
 import scalafx.application.JFXApp
 import scalafx.application.JFXApp.PrimaryStage
 import scalafx.geometry.Pos
-import scalafx.scene.control.TextField
+import scalafx.scene.control.{Label, TextField}
 import scalafx.scene.input.{KeyCode, KeyEvent, MouseEvent}
 import scalafx.scene.layout.{HBox, VBox}
-import scalafx.scene.text.Text
 import scalafx.scene.{Cursor, Scene}
 import scalafx.stage.StageStyle
 
@@ -48,26 +47,30 @@ object Application extends JFXApp {
 
     title = "checktimer"
     scene = new Scene {
-      content = new VBox {
+      stylesheets += getClass.getResource("/style.css").toExternalForm
+
+      root = new VBox {
         children = Seq(
           new HBox {
             alignment = Pos.Center
             children = Seq(
-              new Text("Project: "),
+              new Label("Project: "),
               projectField,
-              new Text("Activity: "),
+              new Label(" Activity: "),
               activityField
             )
           },
           new HBox {
             alignment = Pos.CenterRight
             children = Seq(
-              new Text("Current project: "),
-              new Text {
+              new Label("Current project: "),
+              new Label {
+                styleClass += "changeable-text"
                 text <== model.currentProjectInfo
               },
-              new Text(", timing: "),
-              new Text {
+              new Label(", timing: "),
+              new Label {
+                styleClass += "changeable-text"
                 text <== model.currentTimeString
               }
             )

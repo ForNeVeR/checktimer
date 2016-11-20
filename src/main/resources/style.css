@@ -1,0 +1,15 @@
+.root {
+    -fx-base: rgb(50, 50, 50);
+    -fx-control-inner-background: rgb(90, 90, 90);
+
+    -fx-stroke: rgb(180, 180, 180);
+    -fx-stroke-width: 3;
+    -fx-border-color: gray;
+    -fx-border-style: solid;
+    -fx-border-width: 1;
+    -fx-padding: 0.5em;
+}
+
+.changeable-text {
+    -fx-text-fill: rgb(180, 256, 180);
+}
