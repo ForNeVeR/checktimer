@@ -14,7 +14,8 @@ Run
 ---
 
 ```console
-$ sbt run
+$ sbt run # will write results to ~/checktimer.csv
+$ sbt "run file.csv" # will write results to file.csv
 ```
 
 [andivionian-status-classifier]: https://github.com/ForNeVeR/andivionian-status-classifier#status-umbra-

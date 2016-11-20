@@ -4,11 +4,14 @@ import java.time.Duration
 import javafx.animation.{KeyFrame, Timeline}
 import javafx.event.{ActionEvent, EventHandler}
 
+import com.github.tototoshi.csv.CSVWriter
+import resource._
+
 import scalafx.animation.Animation
 import scalafx.beans.binding.Bindings
 import scalafx.beans.property.ObjectProperty
 
-class ApplicationModel {
+class ApplicationModel(outFileName: Option[String] = None) {
 
   val currentTrack = new ObjectProperty[Track]
   val currentTime = new ObjectProperty[Duration]
@@ -18,16 +21,11 @@ class ApplicationModel {
   }, currentTrack)
 
   val currentTimeString = Bindings.createStringBinding(() => {
-    Option(currentTime.value) map { value =>
-      val seconds = value.getSeconds
-      val minutes = (seconds / 60) % 60
-      val hours = seconds / 3600
-      f"$hours:$minutes%02d:${seconds % 60}%02d"
-    } getOrElse ""
+    Option(currentTime.value) map DurationUtils.toString getOrElse ""
   }, currentTime)
 
   private val timeline = new Timeline(
-    new KeyFrame(javafx.util.Duration.seconds(5.0), new EventHandler[ActionEvent] {
+    new KeyFrame(javafx.util.Duration.seconds(1.0), new EventHandler[ActionEvent] {
       override def handle(event: ActionEvent): Unit = {
         Option(currentTrack.value) foreach (track => track.duration foreach (d => currentTime.value = d))
       }
@@ -35,15 +33,31 @@ class ApplicationModel {
   timeline.setCycleCount(Animation.INDEFINITE)
 
   def start(project: String, activity: String): Unit = {
+    println(s"Starting project $project / $activity")
     currentTrack.value = Track(project, activity).start()
     currentTime.value = Duration.ZERO
     timeline.play()
   }
 
   def stop(): Unit = {
-    // TODO[F]: save log (#2)
+    println("Stopping project")
     timeline.stop()
-    currentTrack.value = null
-    currentTime.value = null
+    Option(currentTrack.value) foreach { track =>
+      val duration = track.duration()
+
+      currentTrack.value = null
+      currentTime.value = null
+
+      duration foreach (saveTime(track, _))
+    }
+  }
+
+  private def saveTime(track: Track, duration: Duration): Unit = {
+    outFileName foreach { fileName =>
+      println(s"Saving data to $fileName")
+      for (writer <- managed(CSVWriter.open(fileName, append = true))) {
+        writer.writeRow(List(track.project, track.activity, DurationUtils.toString(duration)))
+      }
+    }
   }
 }
