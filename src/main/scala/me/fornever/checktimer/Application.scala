@@ -6,11 +6,11 @@ import scalafx.Includes._
 import scalafx.application.JFXApp
 import scalafx.application.JFXApp.PrimaryStage
 import scalafx.geometry.Pos
-import scalafx.scene.Scene
 import scalafx.scene.control.TextField
-import scalafx.scene.input.{KeyCode, KeyEvent}
+import scalafx.scene.input.{KeyCode, KeyEvent, MouseEvent}
 import scalafx.scene.layout.{HBox, VBox}
 import scalafx.scene.text.Text
+import scalafx.scene.{Cursor, Scene}
 import scalafx.stage.StageStyle
 
 object Application extends JFXApp {
@@ -74,6 +74,12 @@ object Application extends JFXApp {
           }
         )
       }
+
+      onMousePressed = saveMousePosition _
+      onMouseReleased = removeMousePosition _
+      onMouseDragged = moveWindow _
+
+      cursor = Cursor.Move
     }
 
     onCloseRequest = handle {
@@ -82,4 +88,21 @@ object Application extends JFXApp {
   }
 
   stage.initStyle(StageStyle.Undecorated)
+
+  var baseMousePosition: Option[(Double, Double)] = None
+
+  private def saveMousePosition(event: MouseEvent): Unit = {
+    baseMousePosition = Some((stage.x.value - event.screenX, stage.y.value - event.screenY))
+  }
+
+  private def removeMousePosition(event: MouseEvent): Unit = {
+    baseMousePosition = None
+  }
+
+  private def moveWindow(event: MouseEvent): Unit = {
+    baseMousePosition foreach { case (x0, y0) =>
+      stage.x = event.screenX + x0
+      stage.y = event.screenY + y0
+    }
+  }
 }
