@@ -7,7 +7,7 @@ import scalafx.geometry.Pos
 import scalafx.scene.Scene
 import scalafx.scene.control.TextField
 import scalafx.scene.input.{KeyCode, KeyEvent}
-import scalafx.scene.layout.HBox
+import scalafx.scene.layout.{HBox, VBox}
 import scalafx.scene.text.Text
 import scalafx.stage.StageStyle
 
@@ -34,13 +34,30 @@ object Application extends JFXApp {
 
     title = "checktimer"
     scene = new Scene {
-      content = new HBox {
-        alignment = Pos.Center
+      content = new VBox {
         children = Seq(
-          new Text("Project: "),
-          projectField,
-          new Text("Activity: "),
-          activityField
+          new HBox {
+            alignment = Pos.Center
+            children = Seq(
+              new Text("Project: "),
+              projectField,
+              new Text("Activity: "),
+              activityField
+            )
+          },
+          new HBox {
+            alignment = Pos.CenterRight
+            children = Seq(
+              new Text("Current project: "),
+              new Text {
+                text <== model.currentProjectInfo
+              },
+              new Text(", timing: "),
+              new Text {
+                text <== model.currentTimeString
+              }
+            )
+          }
         )
       }
     }

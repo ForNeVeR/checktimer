@@ -24,4 +24,39 @@ class ApplicationModelSpec extends FlatSpec with Matchers {
     model.stop()
     model.currentTrack.value should be (null)
   }
+
+  it should "contain null time before start" in {
+    val model = new ApplicationModel
+    model.currentTime.value should be (null)
+  }
+
+  it should "contain not null time before start" in {
+    val model = new ApplicationModel
+    model.start("fff", "bbb")
+    model.currentTime.value shouldNot be (null)
+  }
+
+  it should "contain null time after stop" in {
+    val model = new ApplicationModel
+    model.start("fff", "bbb")
+    model.stop()
+    model.currentTime.value should be (null)
+  }
+
+  it should "contain empty project info before start" in {
+    val model = new ApplicationModel
+    model.currentProjectInfo.value should be ("")
+  }
+
+  it should "contain formatted project info after start" in {
+    val model = new ApplicationModel
+    model.start("proj01", "activ02")
+    model.currentProjectInfo.value should be ("proj01: activ02")
+  }
+
+  it should "contain formatted time string value" in {
+    val model = new ApplicationModel
+    model.start("fff", "bbb")
+    model.currentTimeString.value shouldNot be (null)
+  }
 }
