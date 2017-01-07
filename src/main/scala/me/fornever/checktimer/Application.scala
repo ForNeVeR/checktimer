@@ -14,19 +14,20 @@ import scalafx.stage.StageStyle
 
 object Application extends JFXApp {
 
-  val homeDirectory = System.getProperty("user.home")
-  val outFileName = {
-    parameters.unnamed match {
-      case Seq(fileName) => fileName
-      case _ => Paths.get(homeDirectory, "checktimer.csv").toString
-    }
+  val configuration = {
+    val configPath =
+      parameters.unnamed match {
+        case Seq(fileName) => fileName
+        case _ => Paths.get(Environment.homeDirectory, "checktimer.cfg").toString
+      }
+    Configuration.loadFrom(configPath)
   }
 
   println("Arguments: " + parameters.unnamed)
-  println("Target file: " + outFileName)
+  println("Configuration: " + configuration)
 
   stage = new PrimaryStage {
-    val model = new ApplicationModel(Some(outFileName))
+    val model = new ApplicationModel(Some(configuration.databasePath))
 
     def keyPress(e: KeyEvent): Unit =
       e match {
