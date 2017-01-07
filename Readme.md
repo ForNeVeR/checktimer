@@ -17,8 +17,18 @@ Run
 ---
 
 ```console
-$ sbt run # will write results to ~/checktimer.csv
-$ sbt "run file.csv" # will write results to file.csv
+$ sbt run # will read the configuration from ~/checktimer.cfg
+$ sbt "run ./file.cfg" # will read the configuration from file.cfg
+```
+
+Configure
+---------
+
+Here's the configuration file example:
+
+```
+database: "/home/user/checktimer.csv" # path to the data storage
+task: "task" # path to Taskwarrior executable
 ```
 
 [andivionian-status-classifier]: https://github.com/ForNeVeR/andivionian-status-classifier#status-ventis-

@@ -1,5 +1,5 @@
 param (
-    $CsvFile = "$(Resolve-Path ~)/checktimer.csv",
+    $ConfigFile = "$(Resolve-Path ~)/checktimer.cfg",
 
     $SourceDir = "$PSScriptRoot/..",
     $Jar = "$SourceDir/target/scala-2.11/checktimer_2.11-0.0.1.jar",
@@ -24,7 +24,7 @@ try {
     exec $sbt package
     $classpath = exec $sbt 'export compile:dependencyClasspath' | Select-Object -Last 1
 
-    exec $java -cp "$classpath;$Jar" $MainClass $CsvFile
+    exec $java -cp "$classpath;$Jar" $MainClass $ConfigFile
 } finally {
     Pop-Location
 }
