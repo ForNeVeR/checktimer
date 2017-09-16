@@ -8,7 +8,7 @@ import scalafx.application.JFXApp.PrimaryStage
 import scalafx.geometry.Pos
 import scalafx.scene.control.{Label, TextField}
 import scalafx.scene.input.{KeyCode, KeyEvent, MouseEvent}
-import scalafx.scene.layout.{HBox, VBox}
+import scalafx.scene.layout.{HBox, Region, VBox}
 import scalafx.scene.{Cursor, Scene}
 import scalafx.stage.StageStyle
 
@@ -64,15 +64,20 @@ object Application extends JFXApp {
           new HBox {
             alignment = Pos.CenterRight
             children = Seq(
-              new Label("Current project: "),
+              new Label("Current: ") {
+                minWidth = Region.USE_PREF_SIZE
+              },
               new Label {
                 styleClass += "changeable-text"
                 text <== model.currentProjectInfo
               },
-              new Label(", timing: "),
+              new Label(", timing: ") {
+                minWidth = Region.USE_PREF_SIZE
+              },
               new Label {
-                styleClass += "changeable-text"
+                styleClass ++= Seq("changeable-text")
                 text <== model.currentTimeString
+                minWidth = Region.USE_PREF_SIZE
               }
             )
           }
