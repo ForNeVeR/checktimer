@@ -23,24 +23,29 @@ class ApplicationModel(outFileName: Option[String] = None) {
     Option(currentTime.value) map DateTimeUtils.toString getOrElse ""
   }, currentTime)
 
-  private val timeline = new Timeline(
-    new KeyFrame(javafx.util.Duration.seconds(1.0), new EventHandler[ActionEvent] {
-      override def handle(event: ActionEvent): Unit = {
-        Option(currentTrack.value) foreach (track => track.duration foreach (d => currentTime.value = d))
-      }
-    }))
-  timeline.setCycleCount(Animation.INDEFINITE)
+  protected def createTimeline(): Option[Timeline] = Some(
+    new Timeline(
+      new KeyFrame(javafx.util.Duration.seconds(1.0), new EventHandler[ActionEvent] {
+        override def handle(event: ActionEvent): Unit = {
+          Option(currentTrack.value) foreach (track => track.duration foreach (d => currentTime.value = d))
+        }
+      })
+    )
+  )
+
+  private val timeline = createTimeline()
+  timeline.foreach(_.setCycleCount(Animation.INDEFINITE))
 
   def start(project: String, activity: String): Unit = {
     println(s"Starting project $project / $activity")
     currentTrack.value = Track(project, activity).start()
     currentTime.value = Duration.ZERO
-    timeline.play()
+    timeline.foreach(_.play())
   }
 
   def stop(): Unit = {
     println("Stopping project")
-    timeline.stop()
+    timeline.foreach(_.stop())
     Option(currentTrack.value) foreach { track =>
       val trackDuration = track.duration()
 
