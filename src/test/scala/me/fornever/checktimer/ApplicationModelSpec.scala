@@ -1,10 +1,21 @@
 package me.fornever.checktimer
 
+import org.scalatest._
+import scalafx.application.Platform
+
 import java.io.File
 
-import org.scalatest._
+class ApplicationModelSpec extends FlatSpec with Matchers with BeforeAndAfterAll {
 
-class ApplicationModelSpec extends FlatSpec with Matchers {
+  override protected def beforeAll(): Unit = {
+    Platform.startup(new Runnable {
+      override def run(): Unit = ()
+    })
+  }
+
+  override protected def afterAll(): Unit = {
+    Platform.exit()
+  }
 
   "An ApplicationModel" should "contain no Track after creation" in {
     val model = new ApplicationModel
