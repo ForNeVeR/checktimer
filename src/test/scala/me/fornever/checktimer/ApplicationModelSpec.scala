@@ -5,7 +5,7 @@ import org.scalatest._
 
 import java.io.File
 
-class ApplicationModelSpec extends FlatSpec with Matchers with BeforeAndAfterAll {
+class ApplicationModelSpec extends FlatSpec with Matchers {
 
   private def newApplicationModel(outFileName: Option[String] = None) = new ApplicationModel(outFileName) {
     override protected def createTimeline(): Option[Timeline] = None

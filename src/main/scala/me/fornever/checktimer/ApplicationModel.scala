@@ -1,14 +1,13 @@
 package me.fornever.checktimer
 
-import java.time.Duration
 import javafx.animation.{KeyFrame, Timeline}
 import javafx.event.{ActionEvent, EventHandler}
-
 import me.fornever.checktimer.dto.TrackDto
-
 import scalafx.animation.Animation
 import scalafx.beans.binding.{Bindings, StringBinding}
 import scalafx.beans.property.ObjectProperty
+
+import java.time.Duration
 
 class ApplicationModel(outFileName: Option[String] = None) {
 
@@ -34,7 +33,7 @@ class ApplicationModel(outFileName: Option[String] = None) {
   )
 
   private val timeline = createTimeline()
-  timeline.foreach(_.setCycleCount(Animation.INDEFINITE))
+  timeline.foreach(_.setCycleCount(Animation.Indefinite))
 
   def start(project: String, activity: String): Unit = {
     println(s"Starting project $project / $activity")
