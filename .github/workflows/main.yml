@@ -1,0 +1,34 @@
+name: Main
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  schedule:
+    - cron: '0 0 * * 0'
+
+jobs:
+  main:
+    runs-on: ${{ matrix.image }}
+    strategy:
+      matrix:
+        image: [macos-12, ubuntu-22.04, windows-2022]
+      fail-fast: false
+    steps:
+      - name: Check out the sources
+        uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'corretto'
+          java-version: '17'
+          cache: 'sbt'
+
+      - name: Build
+        run: sbt compile
+
+      - name: Test
+        run: sbt test
