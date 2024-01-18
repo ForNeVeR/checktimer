@@ -6,8 +6,8 @@ on:
   pull_request:
     branches:
       - main
-  schedule:
-    - cron: '0 0 * * 0'
+  repository_dispatch:
+    types: [ periodic ]
 
 jobs:
   main:
