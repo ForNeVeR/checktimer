@@ -1,6 +1,7 @@
 package me.fornever.checktimer
 
 import me.fornever.checktimer.services.WindowServiceImpl
+import org.tinylog.scala.Logger
 import scalafx.Includes._
 import scalafx.application.JFXApp
 import scalafx.application.JFXApp.PrimaryStage
@@ -25,8 +26,8 @@ object Application extends JFXApp {
     Configuration.loadFrom(configPath)
   }
 
-  println("Arguments: " + parameters.unnamed)
-  println("Configuration: " + configuration)
+  Logger.info("Arguments: {}", parameters.unnamed)
+  Logger.info("Configuration: {}", configuration)
 
   stage = new PrimaryStage {
     val windowService = new WindowServiceImpl(this)

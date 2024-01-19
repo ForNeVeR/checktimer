@@ -31,7 +31,11 @@ database: "/home/user/checktimer.csv" # path to the data storage
 task: "task" # path to Taskwarrior executable
 ```
 
+### Logging
+Checktimer uses tinylog 2 logging framework. By default, it will write logs to `<temp folder>/checktimer/` directory, and to the standard output. It is possible to override the logging parameters, see [the logging documentation page][docs.tinylog] for details.
+
 [andivionian-status-classifier]: https://github.com/ForNeVeR/andivionian-status-classifier#status-ventis-
 [icons.checktimer]: src/main/resources/icons/checktimer.svg
 [screenshot]: docs/screenshot.png
 [status-ventis]: https://img.shields.io/badge/status-ventis-yellow.svg
+[docs.tinylog]: https://tinylog.org/v2/configuration/

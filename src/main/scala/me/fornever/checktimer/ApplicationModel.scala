@@ -4,6 +4,7 @@ import javafx.animation.{KeyFrame, Timeline}
 import javafx.event.{ActionEvent, EventHandler}
 import me.fornever.checktimer.dto.TrackDto
 import me.fornever.checktimer.services.WindowService
+import org.tinylog.scala.Logger
 import scalafx.animation.Animation
 import scalafx.beans.binding.{Bindings, StringBinding}
 import scalafx.beans.property.{BooleanProperty, ObjectProperty}
@@ -42,14 +43,14 @@ class ApplicationModel(outFileName: Option[String] = None, windowService: Window
   timeline.foreach(_.setCycleCount(Animation.Indefinite))
 
   def start(project: String, activity: String): Unit = {
-    println(s"Starting project $project / $activity")
+    Logger.info("Starting project {} / {}", project, activity)
     currentTrack.value = Track(project, activity).start()
     currentTime.value = Duration.ZERO
     timeline.foreach(_.play())
   }
 
   def stop(): Unit = {
-    println("Stopping project")
+    Logger.info("Stopping project")
     timeline.foreach(_.stop())
     Option(currentTrack.value) foreach { track =>
       val trackDuration = track.duration()
@@ -68,7 +69,7 @@ class ApplicationModel(outFileName: Option[String] = None, windowService: Window
 
   private def saveTime(track: TrackDto): Unit = {
     outFileName foreach { fileName =>
-      println(s"Saving data to $fileName")
+      Logger.info("Saving data to {}", fileName)
       CsvFile.append(fileName, track)
     }
   }
