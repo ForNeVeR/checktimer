@@ -1,7 +1,7 @@
 package me.fornever.checktimer
 
 import javafx.animation.{KeyFrame, Timeline}
-import javafx.event.{ActionEvent, EventHandler}
+import javafx.event.ActionEvent
 import me.fornever.checktimer.dto.TrackDto
 import me.fornever.checktimer.services.WindowService
 import org.tinylog.scala.Logger
@@ -31,10 +31,8 @@ class ApplicationModel(outFileName: Option[String] = None, windowService: Window
 
   protected def createTimeline(): Option[Timeline] = Some(
     new Timeline(
-      new KeyFrame(javafx.util.Duration.seconds(1.0), new EventHandler[ActionEvent] {
-        override def handle(event: ActionEvent): Unit = {
-          Option(currentTrack.value) foreach (track => track.duration foreach (d => currentTime.value = d))
-        }
+      new KeyFrame(javafx.util.Duration.seconds(1.0), (_: ActionEvent) => {
+        Option(currentTrack.value) foreach (track => track.duration foreach (d => currentTime.value = d))
       })
     )
   )
