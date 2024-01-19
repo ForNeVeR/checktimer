@@ -4,10 +4,11 @@ import me.fornever.checktimer.services.WindowServiceImpl
 import scalafx.Includes._
 import scalafx.application.JFXApp
 import scalafx.application.JFXApp.PrimaryStage
-import scalafx.geometry.Pos
+import scalafx.geometry.{Insets, Pos}
 import scalafx.scene.control.{Label, TextField, ToggleButton}
 import scalafx.scene.input.{KeyCode, KeyEvent, MouseEvent}
 import scalafx.scene.layout.{HBox, Region, VBox}
+import scalafx.scene.text.Font
 import scalafx.scene.{Cursor, Scene}
 import scalafx.stage.StageStyle
 
@@ -55,6 +56,9 @@ object Application extends JFXApp {
     title = "checktimer"
     scene = new Scene {
       stylesheets += getClass.getResource("/style.css").toExternalForm
+
+      private val em = Font.default.getSize
+      HBox.setMargin(stayOnTopButton, Insets(0, 0, 0, -0.5 * em))
 
       root = new VBox {
         children = Seq(
