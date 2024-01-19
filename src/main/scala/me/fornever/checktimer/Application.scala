@@ -1,8 +1,6 @@
 package me.fornever.checktimer
 
 import me.fornever.checktimer.services.WindowServiceImpl
-
-import java.nio.file.Paths
 import scalafx.Includes._
 import scalafx.application.JFXApp
 import scalafx.application.JFXApp.PrimaryStage
@@ -12,6 +10,8 @@ import scalafx.scene.input.{KeyCode, KeyEvent, MouseEvent}
 import scalafx.scene.layout.{HBox, Region, VBox}
 import scalafx.scene.{Cursor, Scene}
 import scalafx.stage.StageStyle
+
+import java.nio.file.Paths
 
 object Application extends JFXApp {
 
@@ -41,8 +41,9 @@ object Application extends JFXApp {
         case _ =>
       }
 
-    private val stayOnTopButton = new ToggleButton("ST") { // TODO: Icon
-      selected.bindBidirectional(model.stayOnTop) // TODO: Tooltip
+    private val stayOnTopButton = new ToggleButton("", Resources.pinIcon) {
+      tooltip = "Stay on Top"
+      selected.bindBidirectional(model.stayOnTop)
     }
     private val projectField = new TextField {
       onKeyPressed = keyPress _

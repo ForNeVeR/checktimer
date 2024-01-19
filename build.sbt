@@ -2,12 +2,15 @@ name := "checktimer"
 version := "0.0.1"
 scalaVersion := "2.11.8"
 
+resolvers += "jitpack" at "https://jitpack.io"
+
 libraryDependencies ++= Seq(
   "com.github.tototoshi" %% "scala-csv" % "1.3.4",
   "com.jsuereth" %% "scala-arm" % "2.0",
   "com.typesafe" % "config" % "1.3.1",
   "org.scalafx" %% "scalafx" % "12.0.2-R18",
-  "org.scalatest" %% "scalatest" % "3.0.0" % "test"
+  "org.scalatest" %% "scalatest" % "3.0.0" % "test",
+  "com.github.hervegirod" % "fxsvgimage" % "1.1"
 )
 
 libraryDependencies ++= {
