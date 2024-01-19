@@ -108,6 +108,7 @@ object Application extends JFXApp {
   }
 
   stage.initStyle(StageStyle.Undecorated)
+  stage.icons.add(Resources.checktimerIcon)
 
   private var baseMousePosition: Option[(Double, Double)] = None
 

@@ -1,4 +1,4 @@
-checktimer [![Status Ventis][status-ventis]][andivionian-status-classifier]
+![Project icon][icons.checktimer] checktimer [![Status Ventis][status-ventis]][andivionian-status-classifier]
 ==========
 
 ![checktimer screenshot][screenshot]
@@ -32,5 +32,6 @@ task: "task" # path to Taskwarrior executable
 ```
 
 [andivionian-status-classifier]: https://github.com/ForNeVeR/andivionian-status-classifier#status-ventis-
+[icons.checktimer]: src/main/resources/icons/checktimer.svg
 [screenshot]: docs/screenshot.png
 [status-ventis]: https://img.shields.io/badge/status-ventis-yellow.svg
