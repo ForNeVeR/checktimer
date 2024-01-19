@@ -1,12 +1,13 @@
 package me.fornever.checktimer
 
-import java.nio.file.Paths
+import me.fornever.checktimer.services.WindowServiceImpl
 
+import java.nio.file.Paths
 import scalafx.Includes._
 import scalafx.application.JFXApp
 import scalafx.application.JFXApp.PrimaryStage
 import scalafx.geometry.Pos
-import scalafx.scene.control.{Label, TextField}
+import scalafx.scene.control.{Label, TextField, ToggleButton}
 import scalafx.scene.input.{KeyCode, KeyEvent, MouseEvent}
 import scalafx.scene.layout.{HBox, Region, VBox}
 import scalafx.scene.{Cursor, Scene}
@@ -14,7 +15,7 @@ import scalafx.stage.StageStyle
 
 object Application extends JFXApp {
 
-  val configuration = {
+  private val configuration = {
     val configPath =
       parameters.unnamed match {
         case Seq(fileName) => fileName
@@ -27,7 +28,8 @@ object Application extends JFXApp {
   println("Configuration: " + configuration)
 
   stage = new PrimaryStage {
-    val model = new ApplicationModel(Some(configuration.databasePath))
+    val windowService = new WindowServiceImpl(this)
+    val model = new ApplicationModel(Some(configuration.databasePath), windowService)
 
     def keyPress(e: KeyEvent): Unit =
       e match {
@@ -39,10 +41,13 @@ object Application extends JFXApp {
         case _ =>
       }
 
-    val projectField = new TextField {
+    private val stayOnTopButton = new ToggleButton("ST") { // TODO: Icon
+      selected.bindBidirectional(model.stayOnTop) // TODO: Tooltip
+    }
+    private val projectField = new TextField {
       onKeyPressed = keyPress _
     }
-    val activityField = new TextField {
+    private val activityField = new TextField {
       onKeyPressed = keyPress _
     }
 
@@ -55,6 +60,7 @@ object Application extends JFXApp {
           new HBox {
             alignment = Pos.Center
             children = Seq(
+              stayOnTopButton,
               new Label("Project: "),
               projectField,
               new Label(" Activity: "),
@@ -98,13 +104,13 @@ object Application extends JFXApp {
 
   stage.initStyle(StageStyle.Undecorated)
 
-  var baseMousePosition: Option[(Double, Double)] = None
+  private var baseMousePosition: Option[(Double, Double)] = None
 
   private def saveMousePosition(event: MouseEvent): Unit = {
     baseMousePosition = Some((stage.x.value - event.screenX, stage.y.value - event.screenY))
   }
 
-  private def removeMousePosition(event: MouseEvent): Unit = {
+  private def removeMousePosition(): Unit = {
     baseMousePosition = None
   }
 

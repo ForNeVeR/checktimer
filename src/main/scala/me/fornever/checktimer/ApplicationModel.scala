@@ -3,16 +3,22 @@ package me.fornever.checktimer
 import javafx.animation.{KeyFrame, Timeline}
 import javafx.event.{ActionEvent, EventHandler}
 import me.fornever.checktimer.dto.TrackDto
+import me.fornever.checktimer.services.WindowService
 import scalafx.animation.Animation
 import scalafx.beans.binding.{Bindings, StringBinding}
-import scalafx.beans.property.ObjectProperty
+import scalafx.beans.property.{BooleanProperty, ObjectProperty}
 
 import java.time.Duration
 
-class ApplicationModel(outFileName: Option[String] = None) {
+class ApplicationModel(outFileName: Option[String] = None, windowService: WindowService) {
 
   val currentTrack = new ObjectProperty[Track]
   val currentTime = new ObjectProperty[Duration]
+  val stayOnTop: BooleanProperty = new BooleanProperty() {
+    onChange { (_, _, state) =>
+      windowService.stayOnTop(state)
+    }
+  }
 
   val currentProjectInfo: StringBinding = Bindings.createStringBinding(() => {
     Option(currentTrack.value) map (t => s"${t.project} / ${t.activity}") getOrElse ""

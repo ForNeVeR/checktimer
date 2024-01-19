@@ -1,13 +1,16 @@
 package me.fornever.checktimer
 
 import javafx.animation.Timeline
+import me.fornever.checktimer.services.{StubWindowService, WindowService}
 import org.scalatest._
 
 import java.io.File
 
 class ApplicationModelSpec extends FlatSpec with Matchers {
 
-  private def newApplicationModel(outFileName: Option[String] = None) = new ApplicationModel(outFileName) {
+  private def newApplicationModel(outFileName: Option[String] = None,
+                                  windowService: WindowService = new StubWindowService) =
+    new ApplicationModel(outFileName, windowService) {
     override protected def createTimeline(): Option[Timeline] = None
   }
 
@@ -73,5 +76,18 @@ class ApplicationModelSpec extends FlatSpec with Matchers {
     model.start("fff", "zzz")
     model.stop()
     file.length > 0 shouldBe true
+  }
+
+  it should "call WindowService.stayOnTop on the corresponding property change" in {
+    var currentValue = false
+    val model = newApplicationModel(windowService = new WindowService {
+      override def stayOnTop(state: Boolean): Unit = currentValue = state
+    })
+
+    currentValue should be(false)
+    model.stayOnTop.value = true
+    currentValue should be(true)
+    model.stayOnTop.value = false
+    currentValue should be(false)
   }
 }
