@@ -66,7 +66,9 @@ object Application extends JFXApp {
             alignment = Pos.Center
             children = Seq(
               stayOnTopButton,
-              new Label("Project: "),
+              new Label("Project: ") {
+                styleClass += "project-label"
+              },
               projectField,
               new Label(" Activity: "),
               activityField

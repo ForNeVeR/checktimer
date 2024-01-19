@@ -13,3 +13,7 @@
 .changeable-text {
     -fx-text-fill: rgb(180, 256, 180);
 }
+
+.project-label {
+    -fx-padding: 0 0 0 0.5em;
+}
