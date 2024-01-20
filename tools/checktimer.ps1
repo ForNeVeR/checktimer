@@ -2,7 +2,7 @@ param (
     $ConfigFile = "$(Resolve-Path ~)/checktimer.cfg",
 
     $SourceDir = "$PSScriptRoot/..",
-    $Jar = "$SourceDir/target/scala-2.11/checktimer_2.11-0.0.1.jar",
+    $Jar = "$SourceDir/target/scala-2.12/checktimer_2.12-0.0.1.jar",
     $MainClass = 'me.fornever.checktimer.Application',
 
     $java = 'java',
