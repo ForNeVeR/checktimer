@@ -27,3 +27,5 @@ libraryDependencies ++= {
 }
 
 fork := true
+
+enablePlugins(JavaAppPackaging)
