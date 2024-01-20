@@ -1,5 +1,5 @@
 name := "checktimer"
-version := "0.0.1"
+version := "1.0.0"
 scalaVersion := "2.12.18"
 
 resolvers += "jitpack" at "https://jitpack.io"
