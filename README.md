@@ -6,19 +6,23 @@
 checktimer is a simple manual time tracking application. It allows the user to
 enter the current activity and saves all the activity to a log file.
 
+Prerequisites
+-------------
+To run checktimer, install Java 17 or newer.
+
 Run
 ---
+1. Download the package for your operating system from the [Releases][releases] page.
+2. Unpack the archive.
+3. Start the application using `checktimer-<version>/bin/checktimer` or `checktimer.bat` script.
 
-```console
-$ sbt run # will read the configuration from ~/checktimer.cfg
-$ sbt "run ./file.cfg" # will read the configuration from file.cfg
-```
+The only command line argument is path to the configuration file (see below). If no argument is provided, the application will try to read the configuration from `~/checktimer.cfg` file, where `~` is a notation for your user's home directory (`USERPROFILE` on Windows, `HOME` on others).
+
+For instructions on how to build and run the application from sources, see the [Contributor Guide][docs.contributing].
 
 Configure
 ---------
-
 Here's the configuration file example:
-
 ```
 database: "/home/user/checktimer.csv" # path to the data storage
 ```
@@ -38,5 +42,6 @@ Documentation
 [docs.maintainer-guide]: MAINTAINERSHIP.md
 [docs.tinylog]: https://tinylog.org/v2/configuration/
 [icons.checktimer]: src/main/resources/icons/checktimer.svg
+[releases]: https://github.com/ForNeVeR/checktimer/releases
 [screenshot]: docs/screenshot.png
 [status-ventis]: https://img.shields.io/badge/status-ventis-yellow.svg
