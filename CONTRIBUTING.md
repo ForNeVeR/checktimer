@@ -5,8 +5,8 @@ This document describes how to build and test the project.
 Prerequisites
 -------------
 This project requires the following software on the developer computer:
-- JDK version 17 (there are various distributions among operating systems; if you are not sure what distribution to choose, our CI uses [Amazon Corretto 17][jdk.corretto.17])
-- [SBT][sbt] (so that the `sbt` command works in the shell)
+- JDK version 17 (there are various distributions among operating systems; if you are not sure what distribution to choose, our CI uses [Amazon Corretto 17][jdk.corretto.17]),
+- [SBT][sbt] (so that the `sbt` command works in the shell).
 
 Build
 -----
