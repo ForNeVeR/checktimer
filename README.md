@@ -31,6 +31,14 @@ database: "/home/user/checktimer.csv" # path to the data storage
 ### Logging
 Checktimer uses tinylog 2 logging framework. By default, it will write logs to `<temp folder>/checktimer/` directory, and to the standard output. It is possible to override the logging parameters, see [the logging documentation page][docs.tinylog] for details.
 
+Data File Format
+----------------
+The data file has CSV format of the following columns:
+```csv
+# Start datetime in ISO-8601 format,Duration,Project,Activity
+2020-01-01T01:00:00.999Z,6:50:46,My Project,My current activity
+```
+
 Documentation
 -------------
 - [Changelog][docs.changelog]
