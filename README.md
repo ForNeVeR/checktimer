@@ -29,11 +29,13 @@ Checktimer uses tinylog 2 logging framework. By default, it will write logs to `
 Documentation
 -------------
 - [Contributor Guide][docs.contributing]
+- [Maintainer Guide][docs.maintainer-guide]
 - [License (MIT)][docs.license]
 
 [andivionian-status-classifier]: https://github.com/ForNeVeR/andivionian-status-classifier#status-ventis-
 [docs.contributing]: CONTRIBUTING.md
 [docs.license]: LICENSE.md
+[docs.maintainer-guide]: MAINTAINERSHIP.md
 [docs.tinylog]: https://tinylog.org/v2/configuration/
 [icons.checktimer]: src/main/resources/icons/checktimer.svg
 [screenshot]: docs/screenshot.png

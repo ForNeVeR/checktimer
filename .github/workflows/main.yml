@@ -10,11 +10,17 @@ on:
     types: [ periodic ]
 
 jobs:
-  main:
-    runs-on: ${{ matrix.image }}
+  build:
+    runs-on: ${{ matrix.config.image }}
     strategy:
       matrix:
-        image: [macos-12, ubuntu-22.04, windows-2022]
+        config:
+          - image: macos-12
+            shortName: macos
+          - image: ubuntu-22.04
+            shortName: linux
+          - image: windows-2022
+            shortName: windows
       fail-fast: false
     steps:
       - name: Check out the sources
@@ -35,3 +41,52 @@ jobs:
 
       - name: Package
         run: sbt universal:packageBin
+
+      - name: Upload package result
+        uses: actions/upload-artifact@v4
+        with:
+          name: checktimer.${{ matrix.config.shortName }}
+          path: target/universal/*.zip
+
+  release:
+    runs-on: ubuntu-22.04
+    needs: [ build ]
+    steps:
+      - name: Download Linux artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: checktimer.linux
+          path: ./target/package/linux/
+      - name: Download macOS artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: checktimer.macos
+          path: ./target/package/macos/
+      - name: Download Windows artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: checktimer.windows
+          path: ./target/package/windows/
+
+      - name: Prepare the release notes
+        uses: ForNeVeR/ChangelogAutomation.action@v1
+        with:
+          input: ./CHANGELOG.md
+          output: ./release-notes.md
+          format: Markdown
+      - name: Upload the release notes
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-notes
+          path: ./release-notes.md
+
+      - name: Create release
+        if: startsWith(github.ref, 'refs/tags/v')
+        id: release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            ./target/package/linux/*.zip
+            ./target/package/macos/*.zip
+            ./target/package/windows/*.zip
+          body_path: ./release-notes.md
