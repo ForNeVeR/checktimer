@@ -28,7 +28,6 @@ Here's the configuration file example:
 
 ```
 database: "/home/user/checktimer.csv" # path to the data storage
-task: "task" # path to Taskwarrior executable
 ```
 
 ### Logging

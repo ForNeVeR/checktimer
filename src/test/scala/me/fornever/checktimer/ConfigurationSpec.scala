@@ -1,10 +1,10 @@
 package me.fornever.checktimer
 
+import org.scalatest.{FlatSpec, Matchers}
+
 import java.io.File
 import java.nio.charset.StandardCharsets
 import java.nio.file.Files
-
-import org.scalatest.{FlatSpec, Matchers}
 
 class ConfigurationSpec extends FlatSpec with Matchers {
 
@@ -23,10 +23,9 @@ class ConfigurationSpec extends FlatSpec with Matchers {
       configFile.toPath,
       """
         |database: "C:\\Users\\Герасим\\checktimer.csv"
-        |task: "zomg"
       """.stripMargin.getBytes(StandardCharsets.UTF_8))
 
-    val config = Configuration("C:\\Users\\Герасим\\checktimer.csv", "zomg")
+    val config = Configuration("C:\\Users\\Герасим\\checktimer.csv")
     Configuration.loadFrom(configFile.getAbsolutePath) should be(config)
   }
 }
