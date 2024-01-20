@@ -7,7 +7,7 @@ import java.nio.file.{Files, Paths}
 
 object Configuration {
 
-  val default = Configuration(Paths.get(Environment.homeDirectory, "checktimer.csv").toString)
+  val default: Configuration = Configuration(Paths.get(Environment.homeDirectory, "checktimer.csv").toString)
 
   def loadFrom(path: String): Configuration = {
     if (!Files.exists(Paths.get(path))) {
