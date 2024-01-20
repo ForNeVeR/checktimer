@@ -71,6 +71,12 @@ jobs:
         with:
           name: checktimer.windows
           path: ./target/package/windows/
+      - name: Rename the packaged archives
+        shell: bash
+        run: |
+          mv ./target/package/linux/*.zip ./target/package/linux/checktimer-linux.zip
+          mv ./target/package/macos/*.zip ./target/package/macos/checktimer-macos.zip
+          mv ./target/package/windows/*.zip ./target/package/windows/checktimer-windows.zip
 
       - name: Prepare the release notes
         uses: ForNeVeR/ChangelogAutomation.action@v1
