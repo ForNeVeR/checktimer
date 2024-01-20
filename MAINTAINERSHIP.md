@@ -3,7 +3,6 @@
 
 Release
 -------
-
 To release a new version:
 1. Update the copyright statement in the `LICENSE.md`, if required.
 2. Choose a new version according to [Semantic Versioning][semver]. It should consist of three numbers (i.e. `1.0.0`).
