@@ -18,7 +18,7 @@ Versioning v2.0.0](https://semver.org/spec/v2.0.0.html).
 - A custom window icon.
 - The application is now packaged as JAR together with native dependencies (so it only requires external JVM to run).
 
-## [0.0.1] - 2019-10-17
+## [0.0.1] - 2016-11-20
 The initial project release as a standalone ScalaFX application. Included features:
 - manual time tracking of your current project and activity,
 - saving all the data to a CSV file,
