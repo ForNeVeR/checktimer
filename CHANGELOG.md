@@ -25,5 +25,6 @@ The initial project release as a standalone ScalaFX application. Included featur
 - command-line arguments: `[csv-file-path]` (`~/checktimer.csv` by default),
 - requires Oracle Java 8 with JavaFX bundled.
 
-[1.0.0]: https://github.com/ForNeVeR/checktimer/releases/tag/0.0.1
-[Unreleased]: https://github.com/ForNeVeR/checktimer/compare/0.0.1...HEAD
+[0.0.1]: https://github.com/ForNeVeR/checktimer/releases/tag/0.0.1
+[1.0.0]: https://github.com/ForNeVeR/checktimer/compare/0.0.1...v1.0.0
+[Unreleased]: https://github.com/ForNeVeR/checktimer/compare/v1.0.0...HEAD
