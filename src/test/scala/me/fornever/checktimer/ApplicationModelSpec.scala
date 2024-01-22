@@ -2,11 +2,12 @@ package me.fornever.checktimer
 
 import javafx.animation.Timeline
 import me.fornever.checktimer.services.{StubWindowService, WindowService}
-import org.scalatest._
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
 
 import java.io.File
 
-class ApplicationModelSpec extends FlatSpec with Matchers {
+class ApplicationModelSpec extends AnyFlatSpec with Matchers {
 
   private def newApplicationModel(outFileName: Option[String] = None,
                                   windowService: WindowService = new StubWindowService) =
@@ -80,9 +81,7 @@ class ApplicationModelSpec extends FlatSpec with Matchers {
 
   it should "call WindowService.stayOnTop on the corresponding property change" in {
     var currentValue = false
-    val model = newApplicationModel(windowService = new WindowService {
-      override def stayOnTop(state: Boolean): Unit = currentValue = state
-    })
+    val model = newApplicationModel(windowService = (state: Boolean) => currentValue = state)
 
     currentValue should be(false)
     model.stayOnTop.value = true

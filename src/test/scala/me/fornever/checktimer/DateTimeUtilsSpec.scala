@@ -1,10 +1,11 @@
 package me.fornever.checktimer
 
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
+
 import java.time.{Duration, ZoneOffset, ZonedDateTime}
 
-import org.scalatest.{FlatSpec, Matchers}
-
-class DateTimeUtilsSpec extends FlatSpec with Matchers {
+class DateTimeUtilsSpec extends AnyFlatSpec with Matchers {
 
   "DateTimeUtils" should "convert a duration to string" in {
     DateTimeUtils.toString(Duration.ZERO) should be("0:00:00")

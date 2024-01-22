@@ -1,12 +1,13 @@
 package me.fornever.checktimer
 
-import org.scalatest.{FlatSpec, Matchers}
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
 
 import java.io.File
 import java.nio.charset.StandardCharsets
 import java.nio.file.Files
 
-class ConfigurationSpec extends FlatSpec with Matchers {
+class ConfigurationSpec extends AnyFlatSpec with Matchers {
 
   "The Configuration" should "load the default instance if the file doesn't exist" in {
     val nonexistent = File.createTempFile("checktimer", "cfg")

@@ -1,8 +1,9 @@
 package me.fornever.checktimer
 
-import org.scalatest._
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
 
-class TrackSpec extends FlatSpec with Matchers {
+class TrackSpec extends AnyFlatSpec with Matchers {
 
   "A Track" should "obtain the date after the start" in {
     var track = Track("foo", "bar")
