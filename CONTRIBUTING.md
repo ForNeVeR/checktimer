@@ -5,7 +5,7 @@ This document describes how to build and test the project.
 Prerequisites
 -------------
 This project requires the following software on the developer computer:
-- JDK version 17 (there are various distributions among operating systems; if you are not sure what distribution to choose, our CI uses [Amazon Corretto 17][jdk.corretto.17]),
+- JDK version 21 (there are various distributions among operating systems; if you are not sure what distribution to choose, our CI uses [Amazon Corretto 21][jdk.corretto.21]),
 - [SBT][sbt] (so that the `sbt` command works in the shell).
 
 Build
@@ -41,5 +41,5 @@ This will create a ZIP archive at path `target/universal/checktimer-<version>.zi
 
 To run the package from the distribution, run `checktimer-<version>/bin/checktimer<.bat>` script.
 
-[jdk.corretto.17]: https://docs.aws.amazon.com/corretto/latest/corretto-17-ug/downloads-list.html
+[jdk.corretto.21]: https://docs.aws.amazon.com/corretto/latest/corretto-21-ug/downloads-list.html
 [sbt]: https://www.scala-sbt.org/

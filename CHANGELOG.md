@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic
 Versioning v2.0.0](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased] (2.0.0)
+### Changed
+- **(Platform update!)** The application now requires Java 21 to run.
+
 ## [1.0.0] - 2024-01-20
 ### Changed
 - **(Breaking!)** Output CSV file format has been changed: now it stores the activity start date time as well.

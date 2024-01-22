@@ -8,13 +8,13 @@ enter the current activity and saves all the activity to a log file.
 
 Prerequisites
 -------------
-To run checktimer, install Java 17 or newer.
+To run checktimer, install Java 21 or newer.
 
 Run
 ---
 1. Download the package for your operating system from the [Releases][releases] page.
 2. Unpack the archive.
-3. Make sure the Java 17 instance is active (e.g. by running `java --version` and inspecting the output in the shell).
+3. Make sure the Java 21 instance is active (e.g. by running `java --version` and inspecting the output in the shell).
 4. Start the application using `checktimer-<version>/bin/checktimer` or `checktimer.bat` script.
 
 The only command line argument is path to the configuration file (see below). If no argument is provided, the application will try to read the configuration from `~/checktimer.cfg` file, where `~` is a notation for your user's home directory (`USERPROFILE` on Windows, `HOME` on others).
