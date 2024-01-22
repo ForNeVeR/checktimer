@@ -6,14 +6,19 @@ import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 
 import java.io.File
+import scala.collection.mutable
+import scala.concurrent.ExecutionContext
 
 class ApplicationModelSpec extends AnyFlatSpec with Matchers {
 
+  private val blockingExecutor = ExecutionContext.fromExecutor((command: Runnable) => command.run())
   private def newApplicationModel(outFileName: Option[String] = None,
-                                  windowService: WindowService = new StubWindowService) =
-    new ApplicationModel(outFileName, windowService) {
-    override protected def createTimeline(): Option[Timeline] = None
-  }
+                                  windowService: WindowService = new StubWindowService,
+                                  backgroundExecutor: ExecutionContext = blockingExecutor,
+                                  uiExecutor: ExecutionContext = blockingExecutor) =
+    new ApplicationModel(outFileName, windowService, backgroundExecutor, uiExecutor) {
+      override protected def createTimeline(): Option[Timeline] = None
+    }
 
   "An ApplicationModel" should "contain no Track after creation" in {
     val model = newApplicationModel()
@@ -72,11 +77,12 @@ class ApplicationModelSpec extends AnyFlatSpec with Matchers {
   }
 
   it should "save track to CSV file" in {
-    val file = File.createTempFile("checktimer", ".csv")
-    val model = newApplicationModel(Some(file.getAbsolutePath))
-    model.start("fff", "zzz")
-    model.stop()
-    file.length > 0 shouldBe true
+    withTempFile { file =>
+      val model = newApplicationModel(Some(file.getAbsolutePath))
+      model.start("fff", "zzz")
+      model.stop()
+      file.length > 0 shouldBe true
+    }
   }
 
   it should "call WindowService.stayOnTop on the corresponding property change" in {
@@ -88,5 +94,39 @@ class ApplicationModelSpec extends AnyFlatSpec with Matchers {
     currentValue should be(true)
     model.stayOnTop.value = false
     currentValue should be(false)
+  }
+
+  it should "set isSaving while saving the data" in {
+    val actionQueue = mutable.Queue.empty[Runnable]
+    val executor = ExecutionContext.fromExecutor((command: Runnable) => actionQueue.synchronized {
+      actionQueue += command
+    })
+
+    def pumpExecutor(): Unit = {
+      while (actionQueue.nonEmpty) {
+        actionQueue.dequeue().run()
+      }
+    }
+
+    withTempFile { file =>
+      val model = newApplicationModel(Some(file.getPath), backgroundExecutor = executor, uiExecutor = executor)
+      model.start("x", "y")
+      model.isSaving.value should be(false)
+
+      model.stop()
+      model.isSaving.value should be(true)
+      pumpExecutor()
+
+      model.isSaving.value should be(false)
+    }
+  }
+
+  def withTempFile(f: File => Unit): Unit = {
+    val file = File.createTempFile("checktimer", ".csv")
+    try {
+      f(file)
+    } finally {
+      file.delete()
+    }
   }
 }

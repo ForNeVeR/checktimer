@@ -3,36 +3,48 @@ package me.fornever.checktimer
 import me.fornever.checktimer.services.WindowServiceImpl
 import org.tinylog.scala.Logger
 import scalafx.Includes._
-import scalafx.application.JFXApp3
 import scalafx.application.JFXApp3.PrimaryStage
+import scalafx.application.{JFXApp3, Platform}
 import scalafx.geometry.{Insets, Pos}
 import scalafx.scene.control.{Label, TextField, ToggleButton}
 import scalafx.scene.input.{KeyCode, KeyEvent, MouseEvent}
-import scalafx.scene.layout.{HBox, Region, VBox}
+import scalafx.scene.layout.{BorderPane, HBox, Region, VBox}
 import scalafx.scene.text.Font
 import scalafx.scene.{Cursor, Scene}
 import scalafx.stage.StageStyle
 
 import java.nio.file.Paths
+import java.util.concurrent.Executors
+import scala.concurrent.ExecutionContext
 
 object Application extends JFXApp3 {
 
+  private def loadConfiguration() = {
+    val configPath =
+      parameters.unnamed match {
+        case Seq(fileName) => fileName
+        case _ => Paths.get(Environment.homeDirectory, "checktimer.cfg").toString
+      }
+    Configuration.loadFrom(configPath)
+  }
+
+  private def createModel(configuration: Configuration, stage: PrimaryStage) = {
+    val windowService = new WindowServiceImpl(stage)
+    val backgroundExecutor = ExecutionContext.fromExecutor(Executors.newSingleThreadExecutor())
+    val uiExecutor = ExecutionContext.fromExecutor((command: Runnable) => Platform.runLater(command))
+    val model = new ApplicationModel(Some(configuration.databasePath), windowService, backgroundExecutor, uiExecutor)
+    model.stayOnTop.value = true
+    model
+  }
+
   override def start(): Unit = {
-    val configuration = {
-      val configPath =
-        parameters.unnamed match {
-          case Seq(fileName) => fileName
-          case _ => Paths.get(Environment.homeDirectory, "checktimer.cfg").toString
-        }
-      Configuration.loadFrom(configPath)
-    }
+    val configuration = loadConfiguration()
 
     Logger.info("Arguments: {}", parameters.unnamed)
     Logger.info("Configuration: {}", configuration)
 
     stage = new PrimaryStage {
-      val windowService = new WindowServiceImpl(this)
-      val model = new ApplicationModel(Some(configuration.databasePath), windowService)
+      private val model = createModel(configuration, this)
 
       def keyPress(e: KeyEvent): Unit =
         e match {
@@ -76,25 +88,32 @@ object Application extends JFXApp3 {
                 activityField
               )
             },
-            new HBox {
-              alignment = Pos.CenterRight
-              children = Seq(
-                new Label("Current: ") {
-                  minWidth = Region.USE_PREF_SIZE
-                },
-                new Label {
-                  styleClass += "changeable-text"
-                  text <== model.currentProjectInfo
-                },
-                new Label(", timing: ") {
-                  minWidth = Region.USE_PREF_SIZE
-                },
-                new Label {
-                  styleClass ++= Seq("changeable-text")
-                  text <== model.currentTimeString
-                  minWidth = Region.USE_PREF_SIZE
-                }
-              )
+            new BorderPane {
+              left = new Label("Saving…") {
+                styleClass += "saving-label"
+                visible <== model.isSaving
+                managed <== visible
+              }
+              right = new HBox {
+                alignment = Pos.CenterRight
+                children = Seq(
+                  new Label("Current: ") {
+                    minWidth = Region.USE_PREF_SIZE
+                  },
+                  new Label {
+                    styleClass += "changeable-text"
+                    text <== model.currentProjectInfo
+                  },
+                  new Label(", timing: ") {
+                    minWidth = Region.USE_PREF_SIZE
+                  },
+                  new Label {
+                    styleClass ++= Seq("changeable-text")
+                    text <== model.currentTimeString
+                    minWidth = Region.USE_PREF_SIZE
+                  }
+                )
+              }
             }
           )
         }

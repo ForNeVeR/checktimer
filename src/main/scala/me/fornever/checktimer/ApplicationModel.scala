@@ -10,9 +10,15 @@ import scalafx.beans.binding.{Bindings, StringBinding}
 import scalafx.beans.property.{BooleanProperty, ObjectProperty}
 
 import java.time.Duration
+import scala.concurrent.{ExecutionContext, Future}
+import scala.util.{Failure, Success}
 
-class ApplicationModel(outFileName: Option[String] = None, windowService: WindowService) {
+class ApplicationModel(outFileName: Option[String] = None,
+                       windowService: WindowService,
+                       backgroundExecutor: ExecutionContext,
+                       uiExecutor: ExecutionContext) {
 
+  val isSaving = new BooleanProperty()
   val currentTrack = new ObjectProperty[Track]
   val currentTime = new ObjectProperty[Duration]
   val stayOnTop: BooleanProperty = new BooleanProperty() {
@@ -59,16 +65,27 @@ class ApplicationModel(outFileName: Option[String] = None, windowService: Window
       (track.startDateTime, trackDuration) match {
         case (Some(startDateTime), Some(duration)) =>
           val dto = TrackDto(startDateTime, duration, track.project, track.activity)
-          saveTime(dto)
+          saveTimeAsync(dto)
         case _ =>
       }
     }
   }
 
-  private def saveTime(track: TrackDto): Unit = {
+  private def saveTimeAsync(track: TrackDto): Unit = {
     outFileName foreach { fileName =>
-      Logger.info("Saving data to {}", fileName)
-      CsvFile.append(fileName, track)
+      Logger.info("Saving data to {}.", fileName)
+      isSaving.value = true
+      // Note that this relies on linearity of the executor and on the fact that all the save operation is performed in
+      // a single chunk of blocking IO. Update to a better strategy if needed, to keep the file action queue in order.
+      Future {
+        CsvFile.append(fileName, track)
+      }(backgroundExecutor).onComplete(result => {
+        isSaving.value = false
+        result match {
+          case Failure(exception) => Logger.error(exception, "Failed to save data.")
+          case Success(_) =>
+        }
+      })(uiExecutor)
     }
   }
 }
