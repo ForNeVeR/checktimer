@@ -7,13 +7,13 @@ Versioning v2.0.0](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased] (2.0.0)
 ### Changed
-- **(Platform update!)** The application now requires Java 21 to run.
+- **(Requirement update!)** The application now requires Java 21 to run.
 
 ## [1.0.0] - 2024-01-20
 ### Changed
 - **(Breaking!)** Output CSV file format has been changed: now it stores the activity start date time as well.
 - **(Breaking!)** The command-line arguments now require a path to the configuration file, not the data file. See the documentation for details.
-- **(Platform update!)** The application now requires Java 17 to run.
+- **(Requirement update!)** The application now requires Java 17 to run.
 - Small layout changes in how the information on the active task is hidden by ellipsis.
 
 ### Added
