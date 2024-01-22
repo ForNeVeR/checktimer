@@ -3,12 +3,13 @@ package me.fornever.checktimer
 import me.fornever.checktimer.services.WindowServiceImpl
 import org.tinylog.scala.Logger
 import scalafx.Includes._
+import scalafx.animation.{Animation, FadeTransition}
 import scalafx.application.JFXApp3.PrimaryStage
 import scalafx.application.{JFXApp3, Platform}
 import scalafx.geometry.{Insets, Pos}
 import scalafx.scene.control.{Label, TextField, ToggleButton}
 import scalafx.scene.input.{KeyCode, KeyEvent, MouseEvent}
-import scalafx.scene.layout.{BorderPane, HBox, Region, VBox}
+import scalafx.scene.layout.{HBox, Priority, Region, VBox}
 import scalafx.scene.text.Font
 import scalafx.scene.{Cursor, Scene}
 import scalafx.stage.StageStyle
@@ -32,9 +33,7 @@ object Application extends JFXApp3 {
     val windowService = new WindowServiceImpl(stage)
     val backgroundExecutor = ExecutionContext.fromExecutor(Executors.newSingleThreadExecutor())
     val uiExecutor = ExecutionContext.fromExecutor((command: Runnable) => Platform.runLater(command))
-    val model = new ApplicationModel(Some(configuration.databasePath), windowService, backgroundExecutor, uiExecutor)
-    model.stayOnTop.value = true
-    model
+    new ApplicationModel(Some(configuration.databasePath), windowService, backgroundExecutor, uiExecutor)
   }
 
   override def start(): Unit = {
@@ -68,6 +67,20 @@ object Application extends JFXApp3 {
       }
 
       title = "checktimer"
+
+      private val savingLabel = new Label("Saving…") {
+        minWidth = Region.USE_PREF_SIZE
+        visible <== model.isSaving
+        managed <== visible
+
+        private val flashingAnimation = new FadeTransition(1.0.s, this)
+        flashingAnimation.setFromValue(0.3)
+        flashingAnimation.setToValue(1.0)
+        flashingAnimation.setCycleCount(Animation.Indefinite)
+        flashingAnimation.setAutoReverse(true)
+        flashingAnimation.play()
+      }
+
       scene = new Scene {
         stylesheets += getClass.getResource("/style.css").toExternalForm
 
@@ -88,32 +101,29 @@ object Application extends JFXApp3 {
                 activityField
               )
             },
-            new BorderPane {
-              left = new Label("Saving…") {
-                styleClass += "saving-label"
-                visible <== model.isSaving
-                managed <== visible
-              }
-              right = new HBox {
-                alignment = Pos.CenterRight
-                children = Seq(
-                  new Label("Current: ") {
-                    minWidth = Region.USE_PREF_SIZE
-                  },
-                  new Label {
-                    styleClass += "changeable-text"
-                    text <== model.currentProjectInfo
-                  },
-                  new Label(", timing: ") {
-                    minWidth = Region.USE_PREF_SIZE
-                  },
-                  new Label {
-                    styleClass ++= Seq("changeable-text")
-                    text <== model.currentTimeString
-                    minWidth = Region.USE_PREF_SIZE
-                  }
-                )
-              }
+             new HBox {
+              alignment = Pos.CenterRight
+              children = Seq(
+               savingLabel,
+                new Region {
+                  hgrow = Priority.Always
+                },
+                new Label("Current: ") {
+                  minWidth = Region.USE_PREF_SIZE
+                },
+                new Label {
+                  styleClass += "changeable-text"
+                  text <== model.currentProjectInfo
+                },
+                new Label(", timing: ") {
+                  minWidth = Region.USE_PREF_SIZE
+                },
+                new Label {
+                  styleClass ++= Seq("changeable-text")
+                  text <== model.currentTimeString
+                  minWidth = Region.USE_PREF_SIZE
+                }
+              )
             }
           )
         }
