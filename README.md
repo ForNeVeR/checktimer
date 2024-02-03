@@ -1,4 +1,4 @@
-![Project icon][icons.checktimer] checktimer [![Status Ventis][badge.status-ventis]][andivionian-status-classifier] [![GitHub Release][badge.release]][releases]
+![Project icon][icons.checktimer] checktimer [![Status Terrid][status-terrid]][andivionian-status-classifier] [![GitHub Release][badge.release]][releases]
 ==========
 
 ![checktimer screenshot][screenshot]
@@ -45,9 +45,8 @@ Documentation
 - [Maintainer Guide][docs.maintainer-guide]
 - [License (MIT)][docs.license]
 
-[andivionian-status-classifier]: https://github.com/ForNeVeR/andivionian-status-classifier#status-ventis-
+[andivionian-status-classifier]: https://github.com/ForNeVeR/andivionian-status-classifier#status-terrid-
 [badge.release]: https://img.shields.io/github/v/release/ForNeVeR/checktimer
-[badge.status-ventis]: https://img.shields.io/badge/status-ventis-yellow.svg
 [docs.changelog]: CHANGELOG.md
 [docs.contributing]: CONTRIBUTING.md
 [docs.license]: LICENSE.md
@@ -56,3 +55,4 @@ Documentation
 [icons.checktimer]: src/main/resources/icons/checktimer.svg
 [releases]: https://github.com/ForNeVeR/checktimer/releases
 [screenshot]: docs/screenshot.png
+[status-terrid]: https://img.shields.io/badge/status-terrid-green.svg
