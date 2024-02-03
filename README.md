@@ -3,8 +3,7 @@
 
 ![checktimer screenshot][screenshot]
 
-checktimer is a simple manual time tracking application. It allows the user to
-enter the current activity and saves all the activity to a log file.
+checktimer is a simple manual time tracking application. It allows the user to enter the current activity and saves all the activity to a CSV file (as configured).
 
 Prerequisites
 -------------
