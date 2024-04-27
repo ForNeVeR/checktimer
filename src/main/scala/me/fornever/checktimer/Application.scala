@@ -22,8 +22,8 @@ object Application extends JFXApp3 {
 
   private def loadConfiguration() = {
     val configPath =
-      parameters.unnamed match {
-        case Seq(fileName) => fileName
+      parameters.unnamed.toArray match {
+        case Array(fileName) => fileName
         case _ => Paths.get(Environment.homeDirectory, "checktimer.cfg").toString
       }
     Configuration.loadFrom(configPath)

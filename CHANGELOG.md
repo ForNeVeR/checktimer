@@ -10,6 +10,9 @@ Versioning v2.0.0](https://semver.org/spec/v2.0.0.html).
 - **(Requirement update!)** The application now requires Java 21 to run.
 - The file operations are now asynchronous. A corresponding label will be shown on the main form during the operation.
 
+### Fixed
+- The application wasn't always correctly reading the command-line arguments.
+
 ## [1.0.0] - 2024-01-20
 ### Changed
 - **(Breaking!)** Output CSV file format has been changed: now it stores the activity start date time as well.
