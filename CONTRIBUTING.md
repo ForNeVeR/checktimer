@@ -41,5 +41,21 @@ This will create a ZIP archive at path `target/universal/checktimer-<version>.zi
 
 To run the package from the distribution, run `checktimer-<version>/bin/checktimer<.bat>` script.
 
+License Automation
+------------------
+If the CI asks you to update the file licenses, follow one of these:
+1. Update the headers manually (look at the existing files), something like this:
+   ```scala
+   // SPDX-FileCopyrightText: %year% %your name% <%your contact info, e.g. email%>
+   //
+   // SPDX-License-Identifier: MIT
+   ```
+   (accommodate to the file's comment style if required).
+2. Alternately, use [REUSE][reuse] tool:
+   ```console
+   $ reuse annotate --license MIT --copyright '%your name% <%your contact info, e.g. email%>' %file names to annotate%
+   ```
+
 [jdk.corretto.21]: https://docs.aws.amazon.com/corretto/latest/corretto-21-ug/downloads-list.html
+[reuse]: https://reuse.software/
 [sbt]: https://www.scala-sbt.org/

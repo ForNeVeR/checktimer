@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2024 Friedrich von Never <friedrich@fornever.me>
+//
+// SPDX-License-Identifier: MIT
+
 name := "checktimer"
 version := "1.0.0"
 scalaVersion := "2.13.13"
