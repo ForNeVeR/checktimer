@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2024 Friedrich von Never <friedrich@fornever.me>
+
+SPDX-License-Identifier: MIT
+-->
+
 Contributor Guide
 =================
 This document describes how to build and test the project.
@@ -41,8 +47,10 @@ This will create a ZIP archive at path `target/universal/checktimer-<version>.zi
 
 To run the package from the distribution, run `checktimer-<version>/bin/checktimer<.bat>` script.
 
+
 License Automation
 ------------------
+<!-- REUSE-IgnoreStart -->
 If the CI asks you to update the file licenses, follow one of these:
 1. Update the headers manually (look at the existing files), something like this:
    ```scala
@@ -55,6 +63,7 @@ If the CI asks you to update the file licenses, follow one of these:
    ```console
    $ reuse annotate --license MIT --copyright '%your name% <%your contact info, e.g. email%>' %file names to annotate%
    ```
+<!-- REUSE-IgnoreEnd -->
 
 [jdk.corretto.21]: https://docs.aws.amazon.com/corretto/latest/corretto-21-ug/downloads-list.html
 [reuse]: https://reuse.software/
