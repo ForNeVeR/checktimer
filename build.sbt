@@ -11,7 +11,7 @@ libraryDependencies ++= Seq(
   "org.scalafx" %% "scalafx" % "21.0.0-R32",
   "org.scalatest" %% "scalatest" % "3.2.18" % "test",
   "org.tinylog" % "tinylog-impl" % "2.6.2",
-  "org.tinylog" %% "tinylog-api-scala" % "2.6.2"
+  "org.tinylog" %% "tinylog-api-scala" % "2.7.0"
 )
 
 enablePlugins(JavaAppPackaging)
