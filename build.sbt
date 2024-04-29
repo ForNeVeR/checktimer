@@ -4,7 +4,7 @@
 
 name := "checktimer"
 version := "1.0.0"
-scalaVersion := "2.13.13"
+scalaVersion := "2.13.14"
 
 resolvers += "jitpack" at "https://jitpack.io"
 
