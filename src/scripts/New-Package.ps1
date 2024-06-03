@@ -28,8 +28,7 @@ jpackage --type app-image `
     --app-version $version `
     --input "$TargetDir/lib" `
     --dest target/jpackage `
-    --main-jar "me.fornever.checktimer-$version-launcher.jar" `
-    --win-console
+    --main-jar "me.fornever.checktimer-$version-launcher.jar"
 if (!$?) {
     throw "Exit code from jpackage: $LASTEXITCODE."
 }
