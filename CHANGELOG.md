@@ -15,6 +15,8 @@ Versioning v2.0.0](https://semver.org/spec/v2.0.0.html).
 ### Changed
 - **(Requirement update!)** The application now requires Java 21 to run.
 - The file operations are now asynchronous. A corresponding label will be shown on the main form during the operation.
+### Added
+- Native executable package (i.e. no external dependencies) for Windows.
 
 ### Fixed
 - The application wasn't always correctly reading the command-line arguments.
