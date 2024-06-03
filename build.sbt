@@ -2,9 +2,11 @@
 //
 // SPDX-License-Identifier: MIT
 
+organization := "me.fornever"
 name := "checktimer"
 version := "1.0.0"
 scalaVersion := "2.13.14"
+maintainer := "friedrich@fornever.me"
 
 resolvers += "jitpack" at "https://jitpack.io"
 
@@ -19,3 +21,4 @@ libraryDependencies ++= Seq(
 )
 
 enablePlugins(JavaAppPackaging)
+enablePlugins(LauncherJarPlugin)
