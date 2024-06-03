@@ -69,7 +69,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: checktimer.${{ matrix.config.shortName }}
-          path: target/jpackage/checktimer
+          path: target/jpackage/
 
   licenses:
     runs-on: ubuntu-22.04
