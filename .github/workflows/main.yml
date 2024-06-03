@@ -46,14 +46,30 @@ jobs:
       - name: Test
         run: sbt test
 
-      - name: Package
+      - name: Package JVM
         run: sbt universal:packageBin
 
-      - name: Upload package result
+      - name: Build native
+        if: matrix.shortName == 'windows'
+        run: sbt universal:stage
+
+      - name: Package native
+        if: matrix.shortName == 'windows'
+        shell: pwsh
+        run: ./src/scripts/New-Package.ps1
+
+      - name: Upload JVM package
+        uses: actions/upload-artifact@v4
+        with:
+          name: checktimer.${{ matrix.config.shortName }}.jvm
+          path: target/universal/*.zip
+
+      - name: Upload native package
+        if: matrix.shortName == 'windows'
         uses: actions/upload-artifact@v4
         with:
           name: checktimer.${{ matrix.config.shortName }}
-          path: target/universal/*.zip
+          path: target/jpackage/checktimer
 
   licenses:
     runs-on: ubuntu-22.04
@@ -72,24 +88,34 @@ jobs:
       - name: Download Linux artifact
         uses: actions/download-artifact@v4
         with:
-          name: checktimer.linux
+          name: checktimer.linux.jvm
           path: ./target/package/linux/
       - name: Download macOS artifact
         uses: actions/download-artifact@v4
         with:
-          name: checktimer.macos
+          name: checktimer.macos.jvm
           path: ./target/package/macos/
       - name: Download Windows artifact
         uses: actions/download-artifact@v4
         with:
-          name: checktimer.windows
+          name: checktimer.windows.jvm
           path: ./target/package/windows/
+      - name: Download Windows package
+        uses: actions/download-artifact@v4
+        with:
+          name: checktimer.windows
+          path: ./target/native/windows/
+
       - name: Rename the packaged archives
         shell: bash
         run: |
-          mv ./target/package/linux/*.zip ./target/package/linux/checktimer-linux.zip
-          mv ./target/package/macos/*.zip ./target/package/macos/checktimer-macos.zip
-          mv ./target/package/windows/*.zip ./target/package/windows/checktimer-windows.zip
+          mv ./target/package/linux/*.zip ./target/package/linux/checktimer-linux.jvm.zip
+          mv ./target/package/macos/*.zip ./target/package/macos/checktimer-macos.jvm.zip
+          mv ./target/package/windows/*.zip ./target/package/windows/checktimer-windows.jvm.zip
+
+      - name: Archive the Windows native package
+        shell: pwsh
+        run: Compress-Archive target/native/windows target/checktimer-windows.zip
 
       - name: Prepare the release notes
         uses: ForNeVeR/ChangelogAutomation.action@v1
@@ -112,4 +138,5 @@ jobs:
             ./target/package/linux/*.zip
             ./target/package/macos/*.zip
             ./target/package/windows/*.zip
+            ./target/checktimer-windows.zip
           body_path: ./release-notes.md

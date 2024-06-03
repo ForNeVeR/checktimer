@@ -18,9 +18,13 @@ To run checktimer, install Java 21 or newer.
 Run
 ---
 1. Download the package for your operating system from the [Releases][releases] page.
+
+   Note that there are two kinds of packages: JVM-dependent (with `.jvm` suffix) and JVM-independent (that bring their own JVM, without the `.jvm` suffix).
 2. Unpack the archive.
-3. Make sure the Java 21 instance is active (e.g., by running `java --version` and inspecting the output in the shell).
-4. Start the application using `checktimer-<version>/bin/checktimer` or `checktimer.bat` script.
+3. If you have downloaded a JVM-dependent package, make sure the Java 21 instance is active (e.g., by running `java --version` and inspecting the output in the shell).
+4. For a JVM-dependent package, use `checktimer-<version>/bin/checktimer` or `checktimer.bat` script.
+
+   For a JVM-independent package, use `checktimer/checktimer.exe` executable file.
 
 The only command line argument is the path to the configuration file (see below). If no argument is provided, the application will try to read the configuration from `~/checktimer.cfg` file, where `~` is a notation for your user's home directory (`USERPROFILE` on Windows, `HOME` on others).
 
