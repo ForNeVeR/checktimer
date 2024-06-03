@@ -50,11 +50,11 @@ jobs:
         run: sbt universal:packageBin
 
       - name: Build native
-        if: matrix.shortName == 'windows'
+        if: matrix.config.shortName == 'windows'
         run: sbt universal:stage
 
       - name: Package native
-        if: matrix.shortName == 'windows'
+        if: matrix.config.shortName == 'windows'
         shell: pwsh
         run: ./src/scripts/New-Package.ps1
 
@@ -65,7 +65,7 @@ jobs:
           path: target/universal/*.zip
 
       - name: Upload native package
-        if: matrix.shortName == 'windows'
+        if: matrix.config.shortName == 'windows'
         uses: actions/upload-artifact@v4
         with:
           name: checktimer.${{ matrix.config.shortName }}
