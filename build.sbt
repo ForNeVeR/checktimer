@@ -4,7 +4,7 @@
 
 organization := "me.fornever"
 name := "checktimer"
-version := "1.0.0"
+version := "2.0.0"
 scalaVersion := "2.13.14"
 maintainer := "friedrich@fornever.me"
 

@@ -11,12 +11,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic
 Versioning v2.0.0](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] (2.0.0)
+## [2.0.0] - 2024-06-05
 ### Changed
 - **(Requirement update!)** The application now requires Java 21 to run.
-- The file operations are now asynchronous. A corresponding label will be shown on the main form during the operation.
+- [#36](https://github.com/ForNeVeR/checktimer/issues/36): the file operations are now asynchronous. A corresponding label will be shown on the main form during the operation.
 ### Added
-- Native executable package (i.e. no external dependencies) for Windows.
+- [#83](https://github.com/ForNeVeR/checktimer/issues/83): a native executable package (i.e. no external dependencies) for Windows.
 
 ### Fixed
 - The application wasn't always correctly reading the command-line arguments.
@@ -43,4 +43,5 @@ The initial project release as a standalone ScalaFX application. Included featur
 
 [0.0.1]: https://github.com/ForNeVeR/checktimer/releases/tag/0.0.1
 [1.0.0]: https://github.com/ForNeVeR/checktimer/compare/0.0.1...v1.0.0
-[Unreleased]: https://github.com/ForNeVeR/checktimer/compare/v1.0.0...HEAD
+[2.0.0]: https://github.com/ForNeVeR/checktimer/compare/v1.0.0...v2.0.0
+[Unreleased]: https://github.com/ForNeVeR/checktimer/compare/v2.0.0...HEAD
