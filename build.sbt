@@ -12,7 +12,7 @@ resolvers += "jitpack" at "https://jitpack.io"
 
 libraryDependencies ++= Seq(
   "com.github.hervegirod" % "fxsvgimage" % "1.1",
-  "com.github.tototoshi" %% "scala-csv" % "1.4.1",
+  "com.github.tototoshi" %% "scala-csv" % "2.0.0",
   "com.typesafe" % "config" % "1.4.3",
   "org.scalafx" %% "scalafx" % "22.0.0-R33",
   "org.scalatest" %% "scalatest" % "3.2.18" % "test",
