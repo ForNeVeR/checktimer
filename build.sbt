@@ -5,7 +5,7 @@
 organization := "me.fornever"
 name := "checktimer"
 version := "2.0.0"
-scalaVersion := "2.13.14"
+scalaVersion := "2.13.15"
 maintainer := "friedrich@fornever.me"
 
 resolvers += "jitpack" at "https://jitpack.io"
