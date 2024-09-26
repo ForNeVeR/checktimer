@@ -72,14 +72,14 @@ jobs:
           path: target/jpackage/
 
   licenses:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - name: REUSE license check
         uses: fsfe/reuse-action@v4
 
   release:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     needs: [ build ]
     steps:
       - name: Check out the sources
