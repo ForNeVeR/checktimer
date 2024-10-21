@@ -14,7 +14,7 @@ libraryDependencies ++= Seq(
   "com.github.hervegirod" % "fxsvgimage" % "1.1",
   "com.github.tototoshi" %% "scala-csv" % "2.0.0",
   "com.typesafe" % "config" % "1.4.3",
-  "org.scalafx" %% "scalafx" % "22.0.0-R33",
+  "org.scalafx" %% "scalafx" % "23.0.1-R34",
   "org.scalatest" %% "scalatest" % "3.2.19" % "test",
   "org.tinylog" % "tinylog-impl" % "2.7.0",
   "org.tinylog" %% "tinylog-api-scala" % "2.7.0"
