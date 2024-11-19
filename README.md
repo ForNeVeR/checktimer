@@ -56,21 +56,19 @@ Documentation
 
 License
 -------
-This project's licensing follows the [REUSE specification v 3.0][reuse.spec]. Consult each file's headers and the REUSE specification for possible details.
+The project is distributed under the terms of [the MIT license][docs.license].
 
-### Contribution Policy
-By contributing to this repository, you agree that the MIT license will cover any new files you contribute. If you want to contribute a file under a different license, you should clearly mark it in the file's header, according to the REUSE specification.
-
-You are welcome to explicitly state your copyright in the file's header as described in [the contributor guide][docs.contributing], but the project maintainers may do this for you as well.
+The license indication in the project's sources is compliant with [the REUSE specification v3.3][reuse.spec].
 
 [andivionian-status-classifier]: https://github.com/ForNeVeR/andivionian-status-classifier#status-terrid-
 [badge.release]: https://img.shields.io/github/v/release/ForNeVeR/checktimer
 [docs.changelog]: CHANGELOG.md
 [docs.contributing]: CONTRIBUTING.md
+[docs.license]: LICENSE.txt
 [docs.maintainer-guide]: MAINTAINERSHIP.md
 [docs.tinylog]: https://tinylog.org/v2/configuration/
 [icons.checktimer]: src/main/resources/icons/checktimer.svg
 [releases]: https://github.com/ForNeVeR/checktimer/releases
-[reuse.spec]: https://reuse.software/spec/
+[reuse.spec]: https://reuse.software/spec-3.3/
 [screenshot]: docs/screenshot.png
 [status-terrid]: https://img.shields.io/badge/status-terrid-green.svg
