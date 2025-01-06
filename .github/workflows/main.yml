@@ -20,9 +20,9 @@ jobs:
     strategy:
       matrix:
         config:
-          - image: macos-12
+          - image: macos-14
             shortName: macos
-          - image: ubuntu-22.04
+          - image: ubuntu-24.04
             shortName: linux
           - image: windows-2022
             shortName: windows
