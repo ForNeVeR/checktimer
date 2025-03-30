@@ -49,7 +49,7 @@ jobs:
       - name: Test
         run: sbt test
 
-      - name: Package JVM
+      - name: Package JVM-specific build
         run: sbt universal:packageBin
 
       - name: Build native
