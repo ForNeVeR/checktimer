@@ -1,10 +1,10 @@
-// SPDX-FileCopyrightText: 2024 Friedrich von Never <friedrich@fornever.me>
+// SPDX-FileCopyrightText: 2024-2025 Friedrich von Never <friedrich@fornever.me>
 //
 // SPDX-License-Identifier: MIT
 
 organization := "me.fornever"
 name := "checktimer"
-version := "2.0.0"
+version := "2.0.1"
 scalaVersion := "2.13.16"
 maintainer := "friedrich@fornever.me"
 

@@ -1,5 +1,5 @@
 <!--
-SPDX-FileCopyrightText: 2024 Friedrich von Never <friedrich@fornever.me>
+SPDX-FileCopyrightText: 2024-2025 Friedrich von Never <friedrich@fornever.me>
 
 SPDX-License-Identifier: MIT
 -->
@@ -10,6 +10,13 @@ Changelog
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic
 Versioning v2.0.0](https://semver.org/spec/v2.0.0.html).
+
+## [2.0.1] - 2025-03-31
+### Changed
+- Update the dependency versions.
+
+### Fixed
+- [#110](https://github.com/ForNeVeR/checktimer/issues/110): Process doesn't terminate on `Alt+F4`.
 
 ## [2.0.0] - 2024-06-05
 ### Changed
@@ -44,4 +51,5 @@ The initial project release as a standalone ScalaFX application. Included featur
 [0.0.1]: https://github.com/ForNeVeR/checktimer/releases/tag/0.0.1
 [1.0.0]: https://github.com/ForNeVeR/checktimer/compare/0.0.1...v1.0.0
 [2.0.0]: https://github.com/ForNeVeR/checktimer/compare/v1.0.0...v2.0.0
-[Unreleased]: https://github.com/ForNeVeR/checktimer/compare/v2.0.0...HEAD
+[2.0.1]: https://github.com/ForNeVeR/checktimer/compare/v2.0.0...v2.0.1
+[Unreleased]: https://github.com/ForNeVeR/checktimer/compare/v2.0.1...HEAD
