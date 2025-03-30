@@ -1,5 +1,5 @@
 <!--
-SPDX-FileCopyrightText: 2024 Friedrich von Never <friedrich@fornever.me>
+SPDX-FileCopyrightText: 2024-2025 Friedrich von Never <friedrich@fornever.me>
 
 SPDX-License-Identifier: MIT
 -->
@@ -60,7 +60,7 @@ The project is distributed under the terms of [the MIT license][docs.license].
 
 The license indication in the project's sources is compliant with [the REUSE specification v3.3][reuse.spec].
 
-[andivionian-status-classifier]: https://github.com/ForNeVeR/andivionian-status-classifier#status-terrid-
+[andivionian-status-classifier]: https://andivionian.fornever.me/v1/#status-terrid-
 [badge.release]: https://img.shields.io/github/v/release/ForNeVeR/checktimer
 [docs.changelog]: CHANGELOG.md
 [docs.contributing]: CONTRIBUTING.md
