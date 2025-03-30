@@ -47,6 +47,12 @@ This will create a ZIP archive at path `target/universal/checktimer-<version>.zi
 
 To run the package from the distribution, run `checktimer-<version>/bin/checktimer<.bat>` script.
 
+To package for Windows, run
+```
+$ sbt universal:stage
+```
+
+The build results are in `target/jpackage/checktimer`. Run `checktimer.exe` to run the application.
 
 License Automation
 ------------------
