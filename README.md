@@ -13,7 +13,11 @@ Checktimer is a simple manual time tracking application. It allows the user to e
 
 Prerequisites
 -------------
-To run checktimer, install Java 21 or newer.
+There are two packages for checktimer:
+- JVM-dependent,
+- with bundled JVM.
+
+To run a JVM-dependent version of checktimer: JVM 21 or later is required.
 
 Run
 ---
