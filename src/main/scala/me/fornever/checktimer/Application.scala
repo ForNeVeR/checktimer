@@ -1,9 +1,10 @@
-// SPDX-FileCopyrightText: 2024 Friedrich von Never <friedrich@fornever.me>
+// SPDX-FileCopyrightText: 2024-2025 Friedrich von Never <friedrich@fornever.me>
 //
 // SPDX-License-Identifier: MIT
 
 package me.fornever.checktimer
 
+import com.jetbrains.rd.util.lifetime.{Lifetime, LifetimeDefinition, LifetimeTerminationTimeoutKind}
 import me.fornever.checktimer.services.WindowServiceImpl
 import org.tinylog.scala.Logger
 import scalafx.Includes._
@@ -33,11 +34,21 @@ object Application extends JFXApp3 {
     Configuration.loadFrom(configPath)
   }
 
-  private def createModel(configuration: Configuration, stage: PrimaryStage) = {
+  private def createModel(lifetime: Lifetime, configuration: Configuration, stage: PrimaryStage) = {
     val windowService = new WindowServiceImpl(stage)
-    val backgroundExecutor = ExecutionContext.fromExecutor(Executors.newSingleThreadExecutor())
+
+    val ioThread = Executors.newSingleThreadExecutor()
+    lifetime.onTermination(() => ioThread.shutdown())
+
+    val backgroundExecutor = ExecutionContext.fromExecutor(ioThread)
     val uiExecutor = ExecutionContext.fromExecutor((command: Runnable) => Platform.runLater(command))
     new ApplicationModel(Some(configuration.databasePath), windowService, backgroundExecutor, uiExecutor)
+  }
+
+  private val ld = {
+    val x = new LifetimeDefinition()
+    x.setTerminationTimeoutKind(LifetimeTerminationTimeoutKind.ExtraLong)
+    x
   }
 
   override def start(): Unit = {
@@ -47,7 +58,7 @@ object Application extends JFXApp3 {
     Logger.info("Configuration: {}", configuration)
 
     stage = new PrimaryStage {
-      private val model = createModel(configuration, this)
+      private val model = createModel(ld.getLifetime, configuration, this)
 
       def keyPress(e: KeyEvent): Unit =
         e match {
@@ -144,6 +155,12 @@ object Application extends JFXApp3 {
 
     stage.initStyle(StageStyle.Undecorated)
     stage.icons.add(Resources.checktimerIcon)
+  }
+
+  override def stopApp(): Unit = {
+    Logger.info("Stopping application.")
+    ld.terminate(true)
+    Logger.info("Goodbye!")
   }
 
   private var baseMousePosition: Option[(Double, Double)] = None

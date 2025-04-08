@@ -11,12 +11,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic
 Versioning v2.0.0](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased] (2.0.2)
+### Fixed
+### Fixed
+- [#110](https://github.com/ForNeVeR/checktimer/issues/110): Process doesn't terminate on `Alt+F4`.
+
+  Fixed for real this time!
+
 ## [2.0.1] - 2025-03-31
 ### Changed
 - Update the dependency versions.
 
 ### Fixed
-- [#110](https://github.com/ForNeVeR/checktimer/issues/110): Process doesn't terminate on `Alt+F4`.
+- ~~[#110](https://github.com/ForNeVeR/checktimer/issues/110): Process doesn't terminate on `Alt+F4`~~.
+
+  (Later it was discovered that the issue is not fixed.)
 
 ## [2.0.0] - 2024-06-05
 ### Changed
