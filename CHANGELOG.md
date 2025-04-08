@@ -11,8 +11,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic
 Versioning v2.0.0](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] (2.0.2)
-### Fixed
+## [2.0.2] - 2025-04-08
 ### Fixed
 - [#110](https://github.com/ForNeVeR/checktimer/issues/110): Process doesn't terminate on `Alt+F4`.
 
@@ -61,4 +60,5 @@ The initial project release as a standalone ScalaFX application. Included featur
 [1.0.0]: https://github.com/ForNeVeR/checktimer/compare/0.0.1...v1.0.0
 [2.0.0]: https://github.com/ForNeVeR/checktimer/compare/v1.0.0...v2.0.0
 [2.0.1]: https://github.com/ForNeVeR/checktimer/compare/v2.0.0...v2.0.1
-[Unreleased]: https://github.com/ForNeVeR/checktimer/compare/v2.0.1...HEAD
+[2.0.2]: https://github.com/ForNeVeR/checktimer/compare/v2.0.1...v2.0.2
+[Unreleased]: https://github.com/ForNeVeR/checktimer/compare/v2.0.2...HEAD
