@@ -11,7 +11,7 @@ maintainer := "friedrich@fornever.me"
 resolvers += "jitpack" at "https://jitpack.io"
 
 libraryDependencies ++= Seq(
-  "com.github.hervegirod" % "fxsvgimage" % "1.1",
+  "com.github.hervegirod" % "fxsvgimage" % "1.2",
   "com.github.tototoshi" %% "scala-csv" % "2.0.0",
   "com.jetbrains.rd" % "rd-core" % "2025.1.1",
   "com.typesafe" % "config" % "1.4.3",
