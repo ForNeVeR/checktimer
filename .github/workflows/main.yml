@@ -89,22 +89,22 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Download Linux artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: checktimer.linux.jvm
           path: ./target/package/linux/
       - name: Download macOS artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: checktimer.macos.jvm
           path: ./target/package/macos/
       - name: Download Windows artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: checktimer.windows.jvm
           path: ./target/package/windows/
       - name: Download Windows package
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: checktimer.windows
           path: ./target/native/windows/
