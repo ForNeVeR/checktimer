@@ -11,7 +11,7 @@ This document describes how to build and test the project.
 Prerequisites
 -------------
 This project requires the following software on the developer computer:
-- JDK version 21 (there are various distributions among operating systems; if you are not sure what distribution to choose, our CI uses [Amazon Corretto 21][jdk.corretto.21]),
+- JDK version 25 (there are various distributions among operating systems; if you are not sure what distribution to choose, our CI uses [Amazon Corretto 25][jdk.corretto.25]),
 - [SBT][sbt] (so that the `sbt` command works in the shell).
 
 Build
@@ -71,6 +71,6 @@ If the CI asks you to update the file licenses, follow one of these:
    ```
 <!-- REUSE-IgnoreEnd -->
 
-[jdk.corretto.21]: https://docs.aws.amazon.com/corretto/latest/corretto-21-ug/downloads-list.html
+[jdk.corretto.25]: https://docs.aws.amazon.com/corretto/latest/corretto-25-ug/downloads-list.html
 [reuse]: https://reuse.software/
 [sbt]: https://www.scala-sbt.org/
