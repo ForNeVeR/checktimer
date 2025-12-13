@@ -62,14 +62,14 @@ jobs:
         run: ./src/scripts/New-Package.ps1
 
       - name: Upload JVM package
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: checktimer.${{ matrix.config.shortName }}.jvm
           path: target/universal/*.zip
 
       - name: Upload native package
         if: matrix.config.shortName == 'windows'
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: checktimer.${{ matrix.config.shortName }}
           path: target/jpackage/
@@ -89,22 +89,22 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Download Linux artifact
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: checktimer.linux.jvm
           path: ./target/package/linux/
       - name: Download macOS artifact
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: checktimer.macos.jvm
           path: ./target/package/macos/
       - name: Download Windows artifact
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: checktimer.windows.jvm
           path: ./target/package/windows/
       - name: Download Windows package
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: checktimer.windows
           path: ./target/native/windows/
@@ -127,7 +127,7 @@ jobs:
           output: ./release-notes.md
           format: Markdown
       - name: Upload the release notes
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: release-notes
           path: ./release-notes.md
