@@ -49,6 +49,9 @@ jobs:
 
       - name: Test
         run: sbt test
+        env:
+          # We don't support SVG rendering on Linux CI.
+          DISABLE_UI_TEST: ${{ matrix.config.shortName == 'linux' }}
 
       - name: Package JVM-specific build
         run: sbt universal:packageBin
