@@ -41,7 +41,7 @@ class ApplicationModel(outFileName: Option[String] = None,
   protected def createTimeline(): Option[Timeline] = Some(
     new Timeline(
       new KeyFrame(javafx.util.Duration.seconds(1.0), (_: ActionEvent) => {
-        Option(currentTrack.value) foreach (track => track.duration foreach (d => currentTime.value = d))
+        Option(currentTrack.value) foreach (track => track.duration() foreach (d => currentTime.value = d))
       })
     )
   )
@@ -82,13 +82,13 @@ class ApplicationModel(outFileName: Option[String] = None,
       // a single chunk of blocking IO. Update to a better strategy if needed, to keep the file action queue in order.
       Future {
         CsvFile.append(fileName, track)
-      }(backgroundExecutor).onComplete(result => {
+      }(using backgroundExecutor).onComplete(result => {
         isSaving.value = false
         result match {
           case Failure(exception) => scribe.error("Failed to save data.", exception)
           case Success(_) =>
         }
-      })(uiExecutor)
+      })(using uiExecutor)
     }
   }
 }
