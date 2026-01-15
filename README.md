@@ -1,5 +1,5 @@
 <!--
-SPDX-FileCopyrightText: 2024-2025 Friedrich von Never <friedrich@fornever.me>
+SPDX-FileCopyrightText: 2024-2026 Friedrich von Never <friedrich@fornever.me>
 
 SPDX-License-Identifier: MIT
 -->
@@ -17,7 +17,7 @@ There are two packages for checktimer:
 - JVM-dependent,
 - with bundled JVM.
 
-To run a JVM-dependent version of checktimer: JVM 21 or later is required.
+To run a JVM-dependent version of checktimer: JVM 25 or later is required.
 
 Run
 ---
