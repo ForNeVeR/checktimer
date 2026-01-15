@@ -23,3 +23,5 @@ libraryDependencies ++= Seq(
 
 enablePlugins(JavaAppPackaging)
 enablePlugins(LauncherJarPlugin)
+
+scalacOptions += "-Werror"
