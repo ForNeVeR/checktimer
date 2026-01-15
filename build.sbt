@@ -17,7 +17,7 @@ libraryDependencies ++= Seq(
   "com.typesafe" % "config" % "1.4.5",
   "org.scalafx" %% "scalafx" % "24.0.2-R36",
   "org.scalatest" %% "scalatest" % "3.2.19" % "test",
-  "com.outr" %% "scribe" % "3.15.2",
+  "com.outr" %% "scribe" % "3.17.0",
   "com.outr" %% "scribe-file" % "3.15.2"
 )
 
