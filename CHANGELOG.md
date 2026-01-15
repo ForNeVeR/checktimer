@@ -1,5 +1,5 @@
 <!--
-SPDX-FileCopyrightText: 2024-2025 Friedrich von Never <friedrich@fornever.me>
+SPDX-FileCopyrightText: 2024-2026 Friedrich von Never <friedrich@fornever.me>
 
 SPDX-License-Identifier: MIT
 -->
@@ -10,6 +10,11 @@ Changelog
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic
 Versioning v2.0.0](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased]
+### Changed
+- **(Requirement update!)** The application now requires Java 25 to run.
+- Migrated from tinylog logging framework to scribe.
 
 ## [2.0.2] - 2025-04-08
 ### Fixed

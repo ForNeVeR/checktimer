@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024-2025 Friedrich von Never <friedrich@fornever.me>
+// SPDX-FileCopyrightText: 2024-2026 Friedrich von Never <friedrich@fornever.me>
 //
 // SPDX-License-Identifier: MIT
 
@@ -6,7 +6,6 @@ package me.fornever.checktimer
 
 import com.jetbrains.rd.util.lifetime.{Lifetime, LifetimeDefinition, LifetimeTerminationTimeoutKind}
 import me.fornever.checktimer.services.WindowServiceImpl
-import org.tinylog.scala.Logger
 import scalafx.Includes._
 import scalafx.animation.{Animation, FadeTransition}
 import scalafx.application.JFXApp3.PrimaryStage
@@ -52,10 +51,11 @@ object Application extends JFXApp3 {
   }
 
   override def start(): Unit = {
+    LoggingConfig.configure()
     val configuration = loadConfiguration()
 
-    Logger.info("Arguments: {}", parameters.unnamed)
-    Logger.info("Configuration: {}", configuration)
+    scribe.info(s"Arguments: ${parameters.unnamed}")
+    scribe.info(s"Configuration: $configuration")
 
     stage = new PrimaryStage {
       private val model = createModel(ld.getLifetime, configuration, this)
@@ -158,9 +158,9 @@ object Application extends JFXApp3 {
   }
 
   override def stopApp(): Unit = {
-    Logger.info("Stopping application.")
+    scribe.info("Stopping application.")
     ld.terminate(true)
-    Logger.info("Goodbye!")
+    scribe.info("Goodbye!")
   }
 
   private var baseMousePosition: Option[(Double, Double)] = None

@@ -42,7 +42,7 @@ database: "/home/user/checktimer.csv" # path to the data storage
 ```
 
 ### Logging
-Checktimer uses tinylog 2 logging framework. By default, it will write logs to `<temp folder>/checktimer/` directory, and to the standard output. It is possible to override the logging parameters, see [the logging documentation page][docs.tinylog] for details.
+Checktimer uses the [scribe][docs.scribe] logging framework. It will write logs to `<temp folder>/checktimer/` directory, and to the standard output (if connected).
 
 Data File Format
 ----------------
@@ -70,7 +70,7 @@ The license indication in the project's sources is compliant with [the REUSE spe
 [docs.contributing]: CONTRIBUTING.md
 [docs.license]: LICENSE.txt
 [docs.maintainer-guide]: MAINTAINERSHIP.md
-[docs.tinylog]: https://tinylog.org/v2/configuration/
+[docs.scribe]: https://github.com/outr/scribe
 [icons.checktimer]: src/main/resources/icons/checktimer.svg
 [releases]: https://github.com/ForNeVeR/checktimer/releases
 [reuse.spec]: https://reuse.software/spec-3.3/

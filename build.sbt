@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024-2025 Friedrich von Never <friedrich@fornever.me>
+// SPDX-FileCopyrightText: 2024-2026 Friedrich von Never <friedrich@fornever.me>
 //
 // SPDX-License-Identifier: MIT
 
@@ -17,8 +17,8 @@ libraryDependencies ++= Seq(
   "com.typesafe" % "config" % "1.4.5",
   "org.scalafx" %% "scalafx" % "24.0.2-R36",
   "org.scalatest" %% "scalatest" % "3.2.19" % "test",
-  "org.tinylog" % "tinylog-impl" % "2.7.0",
-  "org.tinylog" %% "tinylog-api-scala" % "2.7.0"
+  "com.outr" %% "scribe" % "3.15.2",
+  "com.outr" %% "scribe-file" % "3.15.2"
 )
 
 enablePlugins(JavaAppPackaging)

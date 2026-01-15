@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2024 Friedrich von Never <friedrich@fornever.me>
+// SPDX-FileCopyrightText: 2024-2026 Friedrich von Never <friedrich@fornever.me>
 //
 // SPDX-License-Identifier: MIT
 
@@ -8,7 +8,6 @@ import javafx.animation.{KeyFrame, Timeline}
 import javafx.event.ActionEvent
 import me.fornever.checktimer.dto.TrackDto
 import me.fornever.checktimer.services.WindowService
-import org.tinylog.scala.Logger
 import scalafx.animation.Animation
 import scalafx.beans.binding.{Bindings, StringBinding}
 import scalafx.beans.property.{BooleanProperty, ObjectProperty}
@@ -51,14 +50,14 @@ class ApplicationModel(outFileName: Option[String] = None,
   timeline.foreach(_.setCycleCount(Animation.Indefinite))
 
   def start(project: String, activity: String): Unit = {
-    Logger.info("Starting project {} / {}", project, activity)
+    scribe.info(s"Starting project $project / $activity")
     currentTrack.value = Track(project, activity).start()
     currentTime.value = Duration.ZERO
     timeline.foreach(_.play())
   }
 
   def stop(): Unit = {
-    Logger.info("Stopping project")
+    scribe.info("Stopping project")
     timeline.foreach(_.stop())
     Option(currentTrack.value) foreach { track =>
       val trackDuration = track.duration()
@@ -77,7 +76,7 @@ class ApplicationModel(outFileName: Option[String] = None,
 
   private def saveTimeAsync(track: TrackDto): Unit = {
     outFileName foreach { fileName =>
-      Logger.info("Saving data to {}.", fileName)
+      scribe.info(s"Saving data to $fileName.")
       isSaving.value = true
       // Note that this relies on linearity of the executor and on the fact that all the save operation is performed in
       // a single chunk of blocking IO. Update to a better strategy if needed, to keep the file action queue in order.
@@ -86,7 +85,7 @@ class ApplicationModel(outFileName: Option[String] = None,
       }(backgroundExecutor).onComplete(result => {
         isSaving.value = false
         result match {
-          case Failure(exception) => Logger.error(exception, "Failed to save data.")
+          case Failure(exception) => scribe.error("Failed to save data.", exception)
           case Success(_) =>
         }
       })(uiExecutor)
