@@ -6,7 +6,7 @@ package me.fornever.checktimer
 
 import com.jetbrains.rd.util.lifetime.{Lifetime, LifetimeDefinition, LifetimeTerminationTimeoutKind}
 import me.fornever.checktimer.services.WindowServiceImpl
-import scalafx.Includes._
+import scalafx.Includes.*
 import scalafx.animation.{Animation, FadeTransition}
 import scalafx.application.JFXApp3.PrimaryStage
 import scalafx.application.{JFXApp3, Platform}
@@ -75,16 +75,16 @@ object Application extends JFXApp3 {
         selected.bindBidirectional(model.stayOnTop)
       }
       private val projectField = new TextField {
-        onKeyPressed = keyPress _
+        onKeyPressed = keyPress
       }
       private val activityField = new TextField {
-        onKeyPressed = keyPress _
+        onKeyPressed = keyPress
       }
 
       title = "checktimer"
 
       private val savingLabel = new Label("Saving…") {
-        minWidth = Region.USE_PREF_SIZE
+        minWidth = Region.UsePrefSize
         visible <== model.isSaving
         managed <== visible
 
@@ -124,28 +124,28 @@ object Application extends JFXApp3 {
                   hgrow = Priority.Always
                 },
                 new Label("Current: ") {
-                  minWidth = Region.USE_PREF_SIZE
+                  minWidth = Region.UsePrefSize
                 },
                 new Label {
                   styleClass += "changeable-text"
                   text <== model.currentProjectInfo
                 },
                 new Label(", timing: ") {
-                  minWidth = Region.USE_PREF_SIZE
+                  minWidth = Region.UsePrefSize
                 },
                 new Label {
                   styleClass ++= Seq("changeable-text")
                   text <== model.currentTimeString
-                  minWidth = Region.USE_PREF_SIZE
+                  minWidth = Region.UsePrefSize
                 }
               )
             }
           )
         }
 
-        onMousePressed = saveMousePosition _
-        onMouseReleased = removeMousePosition _
-        onMouseDragged = moveWindow _
+        onMousePressed = saveMousePosition
+        onMouseReleased = _ => removeMousePosition()
+        onMouseDragged = moveWindow
 
         cursor = Cursor.Move
       }
