@@ -16,7 +16,7 @@ libraryDependencies ++= Seq(
   "com.jetbrains.rd" % "rd-core" % "2026.1.3",
   "com.typesafe" % "config" % "1.4.6",
   "org.scalafx" %% "scalafx" % "25.0.2-R37",
-  "org.scalatest" %% "scalatest" % "3.2.19" % "test",
+  "org.scalatest" %% "scalatest" % "3.2.20" % "test",
   "com.outr" %% "scribe" % "3.18.0",
   "com.outr" %% "scribe-file" % "3.18.0"
 )
