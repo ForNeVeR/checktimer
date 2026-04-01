@@ -15,7 +15,7 @@ libraryDependencies ++= Seq(
   "com.github.tototoshi" %% "scala-csv" % "2.0.0",
   "com.jetbrains.rd" % "rd-core" % "2026.1.3",
   "com.typesafe" % "config" % "1.4.6",
-  "org.scalafx" %% "scalafx" % "25.0.2-R37",
+  "org.scalafx" %% "scalafx" % "26.0.0-R38",
   "org.scalatest" %% "scalatest" % "3.2.20" % "test",
   "com.outr" %% "scribe" % "3.19.0",
   "com.outr" %% "scribe-file" % "3.19.0"
