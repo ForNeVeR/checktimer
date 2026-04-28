@@ -14,7 +14,7 @@ libraryDependencies ++= Seq(
   "com.github.hervegirod" % "fxsvgimage" % "1.7.1",
   "com.github.tototoshi" %% "scala-csv" % "2.0.0",
   "com.jetbrains.rd" % "rd-core" % "2026.1.3",
-  "com.typesafe" % "config" % "1.4.6",
+  "com.typesafe" % "config" % "1.4.7",
   "org.scalafx" %% "scalafx" % "26.0.0-R38",
   "org.scalatest" %% "scalatest" % "3.2.20" % "test",
   "com.outr" %% "scribe" % "3.19.0",
