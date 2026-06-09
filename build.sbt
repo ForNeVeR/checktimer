@@ -13,7 +13,7 @@ resolvers += "jitpack" at "https://jitpack.io"
 libraryDependencies ++= Seq(
   "com.github.hervegirod" % "fxsvgimage" % "1.7.3",
   "com.github.tototoshi" %% "scala-csv" % "2.0.0",
-  "com.jetbrains.rd" % "rd-core" % "2026.2.3",
+  "com.jetbrains.rd" % "rd-core" % "2026.2.4",
   "com.typesafe" % "config" % "1.4.9",
   "org.scalafx" %% "scalafx" % "26.0.0-R38",
   "org.scalatest" %% "scalatest" % "3.2.20" % "test",
