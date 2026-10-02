@@ -23,7 +23,7 @@ jobs:
         config:
           - image: macos-26
             shortName: macos
-          - image: ubuntu-24.04
+          - image: ubuntu-26.04
             shortName: linux
           - image: windows-2025
             shortName: windows
@@ -79,14 +79,14 @@ jobs:
           path: target/jpackage/
 
   licenses:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@v7
       - name: REUSE license check
         uses: fsfe/reuse-action@v6
 
   release:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     needs: [ build ]
     steps:
       - name: Check out the sources
