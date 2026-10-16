@@ -2,4 +2,4 @@
 //
 // SPDX-License-Identifier: MIT
 
-addSbtPlugin("com.github.sbt" % "sbt-native-packager" % "1.12.0")
+addSbtPlugin("com.github.sbt" % "sbt-native-packager" % "1.13.0")
