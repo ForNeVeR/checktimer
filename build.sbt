@@ -18,7 +18,7 @@ libraryDependencies ++= Seq(
   "org.scalafx" %% "scalafx" % "27.0.0-R39",
   "org.scalatest" %% "scalatest" % "3.2.20" % "test",
   "com.outr" %% "scribe" % "3.19.1",
-  "com.outr" %% "scribe-file" % "3.19.0"
+  "com.outr" %% "scribe-file" % "3.19.1"
 )
 
 enablePlugins(JavaAppPackaging)
